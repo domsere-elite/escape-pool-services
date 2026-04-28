@@ -786,6 +786,15 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   gap: 10px;
   position: relative;
 }
+.included__price-from {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.6);
+  margin-bottom: 4px;
+  position: relative;
+}
 .included__price {
   font-family: var(--font-body);
   font-size: clamp(4.2rem, 8vw, 6.4rem);
