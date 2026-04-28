@@ -60,6 +60,31 @@
     draw();
   }
 
+  /* ─── 1.5. Smooth scroll #quote into center of viewport ─── */
+  // Native CSS scroll-margin handles anchor offset, but for true vertical
+  // centering we override the click and use scrollIntoView({block:'center'}).
+  // Falls back to default browser behavior if unsupported.
+  const quoteForm = document.getElementById('quote');
+  if (quoteForm) {
+    document.querySelectorAll('a[href="#quote"]').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        try {
+          quoteForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (_) {
+          quoteForm.scrollIntoView();
+        }
+        // Update URL hash without triggering another scroll
+        if (history.replaceState) history.replaceState(null, '', '#quote');
+        // Focus the first input shortly after scroll settles — UX win on mobile.
+        setTimeout(() => {
+          const firstInput = quoteForm.querySelector('input:not([type="hidden"]), select, textarea');
+          if (firstInput) firstInput.focus({ preventScroll: true });
+        }, 600);
+      });
+    });
+  }
+
   /* ─── 2. Sticky CTA visibility — show after hero ─── */
   const stickyCta = document.getElementById('stickyCta');
   const hero = document.querySelector('.hero');

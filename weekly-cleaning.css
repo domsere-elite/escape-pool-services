@@ -34,7 +34,15 @@
 
 /* ─── Reset ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 100px;
+}
+
+/* Form anchor gets generous offset so the sticky header doesn't cover it
+   when someone clicks a #quote link from elsewhere on the page. */
+#quote { scroll-margin-top: 100px; }
 body {
   font-family: var(--font-body);
   font-size: 17px;
@@ -288,6 +296,10 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   background-clip: text;
   animation: title-sweep 8s ease-in-out infinite;
   will-change: background-position;
+  /* Give gradient-clipped descenders room — without this, letters like
+     'p', 'y', 'g' can render with their bottoms clipped on some browsers. */
+  padding-bottom: 0.08em;
+  display: inline-block;
 }
 @keyframes title-sweep {
   0%, 100% { background-position: 0% 50%; }
@@ -343,9 +355,10 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   font-size: clamp(2.6rem, 5.4vw, 4.4rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 0.98;
+  line-height: 1.05;
   margin-bottom: 22px;
   text-wrap: balance;
+  padding-bottom: 0.05em;
 }
 .hero__title em {
   font-style: italic;
@@ -799,7 +812,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   font-family: var(--font-body);
   font-size: clamp(4.2rem, 8vw, 6.4rem);
   font-weight: 700;
-  line-height: 0.9;
+  line-height: 1.0;
   letter-spacing: -0.045em;
   font-feature-settings: 'tnum' on, 'lnum' on;
   background: linear-gradient(135deg, var(--cream) 0%, var(--teal-bright) 60%, var(--gold-bright) 100%);
@@ -810,6 +823,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   position: relative;
   display: inline-flex;
   align-items: baseline;
+  padding-bottom: 0.05em;
 }
 .included__price small {
   font-family: var(--font-body);
@@ -1149,12 +1163,13 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   font-size: clamp(5rem, 11vw, 9rem);
   font-weight: 800;
   letter-spacing: -0.045em;
-  line-height: 0.9;
+  line-height: 1.0;
   background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold) 50%, #F0D48A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 16px;
+  padding-bottom: 0.05em;
   text-shadow: 0 12px 40px rgba(212, 168, 83, 0.18);
 }
 
