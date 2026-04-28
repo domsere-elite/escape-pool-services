@@ -1,0 +1,3 @@
+# Netlify redirects
+# 301 the old LP path to the new homepage so existing links/ads don't break.
+/weekly-cleaning.html   /   301
