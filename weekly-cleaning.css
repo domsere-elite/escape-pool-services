@@ -66,6 +66,19 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   padding: 0 clamp(20px, 4vw, 40px);
 }
 
+/* Visually hidden but available to screen readers and form autofill */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .eyebrow {
   display: inline-block;
   font-size: 12px;
@@ -249,57 +262,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
 }
 
 /* Light rays — sun penetrating water from above. SVG, GPU-friendly. */
-.hero__rays {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 3;
-  opacity: 0.5;
-  mix-blend-mode: screen;
-}
-.hero__rays-group {
-  transform-origin: 50% 0%;
-  animation: hero-ray-sway 14s ease-in-out infinite;
-  will-change: transform, opacity;
-}
-@keyframes hero-ray-sway {
-  0%, 100% { transform: skewX(-2deg) scaleY(1); opacity: 0.65; }
-  50%      { transform: skewX(2deg) scaleY(1.04); opacity: 0.85; }
-}
-
-/* Periodic surface ripples — concentric expanding rings */
-.hero__ripples {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 4;
-}
-.hero__ripples span {
-  position: absolute;
-  left: var(--x, 50%);
-  top: var(--y, 50%);
-  width: 12px;
-  height: 12px;
-  margin-left: -6px;
-  margin-top: -6px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(107, 196, 196, 0.55);
-  opacity: 0;
-  animation: hero-ripple 16s ease-out infinite;
-  animation-delay: var(--d, 0s);
-  will-change: transform, opacity;
-}
-@keyframes hero-ripple {
-  0%   { transform: scale(0.4); opacity: 0; border-width: 2px; }
-  6%   { opacity: 0.7; }
-  20%  { transform: scale(8);   opacity: 0.35; border-width: 1px; }
-  35%  { transform: scale(16);  opacity: 0;    border-width: 0.5px; }
-  100% { transform: scale(16);  opacity: 0; }
-}
-
 /* ─── Animation #2 — pulsing "live" dot in eyebrow ─── */
 .hero__eyebrow .live-dot {
   display: inline-block;
@@ -1459,7 +1421,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   }
   .reveal { opacity: 1; transform: none; }
   /* SMIL animations on the SVG don't respond to CSS animation-duration —
-     hide ambient effects entirely and freeze the water. */
-  .hero__ripples, .hero__rays { display: none; }
+     freeze the water at its starting frame. */
   .hero__water svg animate { display: none; }
 }
