@@ -109,7 +109,14 @@
 
   <!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
   <section class="hero">
-    <canvas class="hero__caustics" id="causticsCanvas" aria-hidden="true"></canvas>
+    <!-- Pool photo background — responsive picture serves the right size + format -->
+    <picture class="hero__bg">
+      <source media="(min-width: 768px)" type="image/webp" srcset="hero-pool.webp">
+      <source media="(min-width: 768px)" type="image/jpeg" srcset="hero-pool.jpg">
+      <source type="image/webp" srcset="hero-pool-mobile.webp">
+      <img src="hero-pool-mobile.jpg" alt="" class="hero__bg-img" fetchpriority="high" decoding="async">
+    </picture>
+    <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__glow" aria-hidden="true"></div>
 
     <!-- Light rays — sunlight cutting through water -->

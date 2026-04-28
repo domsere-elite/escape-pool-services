@@ -11,56 +11,7 @@
 (function () {
   'use strict';
 
-  /* ─── 1. Hero caustics — subtle water-light background ─── */
-  const canvas = document.getElementById('causticsCanvas');
-  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const ctx = canvas.getContext('2d');
-    let w, h, t = 0;
-    const points = [];
-
-    function resize() {
-      w = canvas.width = canvas.offsetWidth * (window.devicePixelRatio || 1);
-      h = canvas.height = canvas.offsetHeight * (window.devicePixelRatio || 1);
-      points.length = 0;
-      const count = Math.max(20, Math.floor((w * h) / 80000));
-      for (let i = 0; i < count; i++) {
-        points.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          r: 60 + Math.random() * 80
-        });
-      }
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      ctx.globalCompositeOperation = 'lighter';
-      points.forEach(p => {
-        p.x += p.vx + Math.sin(t * 0.001 + p.y * 0.01) * 0.4;
-        p.y += p.vy + Math.cos(t * 0.001 + p.x * 0.01) * 0.4;
-        if (p.x < -p.r) p.x = w + p.r;
-        if (p.x > w + p.r) p.x = -p.r;
-        if (p.y < -p.r) p.y = h + p.r;
-        if (p.y > h + p.r) p.y = -p.r;
-        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
-        grad.addColorStop(0, 'rgba(107, 196, 196, 0.18)');
-        grad.addColorStop(1, 'rgba(107, 196, 196, 0)');
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      t++;
-      requestAnimationFrame(draw);
-    }
-    draw();
-  }
-
-  /* ─── 1.5. Smooth scroll #quote into center of viewport ─── */
+  /* ─── 1. Smooth scroll #quote into center of viewport ─── */
   // Native CSS scroll-margin handles anchor offset, but for true vertical
   // centering we override the click and use scrollIntoView({block:'center'}).
   // Falls back to default browser behavior if unsupported.
