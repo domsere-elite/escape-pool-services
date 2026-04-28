@@ -97,7 +97,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   gap: 16px;
 }
 .lp-header__logo img {
-  height: 64px;
+  height: 80px;
   width: auto;
   display: block;
 }
