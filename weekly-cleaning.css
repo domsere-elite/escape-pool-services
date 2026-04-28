@@ -40,9 +40,10 @@ html {
   scroll-padding-top: 100px;
 }
 
-/* Form anchor gets generous offset so the sticky header doesn't cover it
-   when someone clicks a #quote link from elsewhere on the page. */
-#quote { scroll-margin-top: 100px; }
+/* Anchor targets get a top offset so the sticky header doesn't cover them
+   (used by #quote on the form, plus #faq and #areas which are Google Ads
+   sitelink destinations). */
+#quote, #faq, #areas { scroll-margin-top: 100px; }
 body {
   font-family: var(--font-body);
   font-size: 17px;
