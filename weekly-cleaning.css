@@ -27,7 +27,7 @@
   --r-md: 14px;
   --r-lg: 22px;
   --easing: cubic-bezier(0.22, 1, 0.36, 1);
-  --font-display: 'Syne', 'Helvetica Neue', system-ui, sans-serif;
+  --font-display: 'Archivo', 'Helvetica Neue', system-ui, sans-serif;
   --font-body:    'Be Vietnam Pro', system-ui, sans-serif;
   --container: 1200px;
 }
@@ -323,9 +323,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
 .hero__title {
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 5vw, 4rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.14;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
   color: var(--cream);
   margin-bottom: 24px;
   text-wrap: balance;
@@ -334,7 +334,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
    line around descenders (p, g, etc.), so it never crosses the letterforms. */
 .hero__title em {
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--teal-bright);
   white-space: nowrap;
   text-decoration: underline;
