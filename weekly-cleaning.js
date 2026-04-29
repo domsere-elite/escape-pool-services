@@ -11,27 +11,30 @@
 (function () {
   'use strict';
 
-  /* ─── 1. Smooth scroll #quote into center of viewport ─── */
-  // Native CSS scroll-margin handles anchor offset, but for true vertical
-  // centering we override the click and use scrollIntoView({block:'center'}).
-  // Falls back to default browser behavior if unsupported.
+  /* ─── 1. Smooth scroll #quote into view ─── */
+  // On mobile we use block:'start' so the form's TOP lands below the sticky header,
+  // not behind the keyboard. On desktop we center the form for visual balance.
   const quoteForm = document.getElementById('quote');
+  const isMobile = () => window.matchMedia('(max-width: 760px)').matches;
   if (quoteForm) {
     document.querySelectorAll('a[href="#quote"]').forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
+        const block = isMobile() ? 'start' : 'center';
         try {
-          quoteForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          quoteForm.scrollIntoView({ behavior: 'smooth', block });
         } catch (_) {
           quoteForm.scrollIntoView();
         }
-        // Update URL hash without triggering another scroll
         if (history.replaceState) history.replaceState(null, '', '#quote');
-        // Focus the first input shortly after scroll settles — UX win on mobile.
-        setTimeout(() => {
-          const firstInput = quoteForm.querySelector('input:not([type="hidden"]), select, textarea');
-          if (firstInput) firstInput.focus({ preventScroll: true });
-        }, 600);
+        // Don't auto-focus on mobile — popping the keyboard before the user
+        // sees the form context can be jarring. Desktop: focus first input.
+        if (!isMobile()) {
+          setTimeout(() => {
+            const firstInput = quoteForm.querySelector('input:not([type="hidden"]):not(.hp-field input), select, textarea');
+            if (firstInput) firstInput.focus({ preventScroll: true });
+          }, 600);
+        }
       });
     });
   }
@@ -79,22 +82,16 @@
 
   // Build a result message safely from validated ZIP + a pre-baked link.
   // Using DOM methods (textContent + appendChild) — never innerHTML with user input.
-  function renderZipResult(container, zip, isCovered) {
+  function renderZipResult(container, zip, isCovered, baseClass) {
     container.textContent = '';
-    container.className = 'areas__zip-result ' + (isCovered ? 'is-yes' : 'is-no');
+    container.className = baseClass + ' ' + (isCovered ? 'is-yes' : 'is-no');
 
     if (isCovered) {
       container.appendChild(document.createTextNode('✓ Yes — we cover '));
       const zipNode = document.createElement('strong');
       zipNode.textContent = zip;
       container.appendChild(zipNode);
-      container.appendChild(document.createTextNode('. '));
-      const link = document.createElement('a');
-      link.href = '#quote';
-      link.textContent = 'Get your quote →';
-      link.style.color = 'inherit';
-      link.style.textDecoration = 'underline';
-      container.appendChild(link);
+      container.appendChild(document.createTextNode('.'));
     } else {
       container.appendChild(document.createTextNode('We may still cover '));
       const zipNode = document.createElement('strong');
@@ -103,14 +100,13 @@
       container.appendChild(document.createTextNode('. '));
       const link = document.createElement('a');
       link.href = 'tel:+18327646224';
-      link.textContent = 'Call us to confirm →';
-      link.style.color = 'inherit';
-      link.style.textDecoration = 'underline';
+      link.textContent = 'Call to confirm →';
       link.dataset.conversion = 'call';
       container.appendChild(link);
     }
   }
 
+  /* Areas-section ZIP checker (in the dark "Service area" panel) */
   const zipForm = document.getElementById('zipForm');
   const zipInput = document.getElementById('zipCheck');
   const zipResult = document.getElementById('zipResult');
@@ -123,8 +119,26 @@
         zipResult.className = 'areas__zip-result is-no';
         return;
       }
-      renderZipResult(zipResult, zip, SERVICED_ZIPS.has(zip));
+      renderZipResult(zipResult, zip, SERVICED_ZIPS.has(zip), 'areas__zip-result');
     });
+  }
+
+  /* Hero-form inline ZIP feedback — qualifies the lead before the rest of
+     the form is filled. Soft check: never blocks submit, just informs. */
+  const heroZip = document.getElementById('formZip');
+  const heroZipFeedback = document.getElementById('zipFeedback');
+  if (heroZip && heroZipFeedback) {
+    const checkHeroZip = () => {
+      const zip = (heroZip.value || '').trim();
+      if (!/^\d{5}$/.test(zip)) {
+        heroZipFeedback.textContent = '';
+        heroZipFeedback.className = 'zip-feedback';
+        return;
+      }
+      renderZipResult(heroZipFeedback, zip, SERVICED_ZIPS.has(zip), 'zip-feedback');
+    };
+    heroZip.addEventListener('input', checkHeroZip);
+    heroZip.addEventListener('blur', checkHeroZip);
   }
 
   /* ─── 5. Conversion tracking ─────────────────────────────

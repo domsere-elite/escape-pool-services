@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weekly Pool Cleaning in Spring, TX — Starting at $199/mo + Free Filter Clean | Escape Pool Services</title>
+  <title>Weekly Pool Cleaning in Spring, TX — From $199/mo | Escape Pools</title>
   <meta name="description" content="Reliable weekly pool cleaning in Spring, Conroe, Klein & The Woodlands. Starting at $199/mo, plus a free filter cleaning for new customers ($125 value). Licensed, insured, locally owned.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#1B2D4B">
@@ -18,24 +18,24 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
   <meta property="og:url" content="https://escapepoolservices.com/">
-  <meta property="og:image" content="https://escapepoolservices.com/hero-pool.jpg">
-  <meta property="og:image:width" content="1920">
-  <meta property="og:image:height" content="1080">
+  <meta property="og:image" content="https://escapepoolservices.com/logo.png">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="327">
   <meta property="og:site_name" content="Escape Pool Services">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Weekly Pool Cleaning · Spring, TX | Escape Pool Services">
   <meta name="twitter:description" content="Starting at $199/mo · Free filter cleaning for new customers ($125 value) · No contracts.">
-  <meta name="twitter:image" content="https://escapepoolservices.com/hero-pool.jpg">
+  <meta name="twitter:image" content="https://escapepoolservices.com/logo.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231B2D4B'/%3E%3Cpath d='M6 18c3-3 6 0 10-3s6 0 10-3' stroke='%234BA8A8' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M6 22c3-3 6 0 10-3s6 0 10-3' stroke='%234BA8A8' stroke-width='2.5' fill='none' stroke-linecap='round' opacity='.5'/%3E%3C/svg%3E">
 
-  <!-- Fonts -->
+  <!-- Fonts — Fraunces (variable serif for display) + Be Vietnam Pro (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600;1,9..144,700&family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="weekly-cleaning.css">
 
@@ -65,7 +65,7 @@
       {"@type": "City", "name": "Willis, TX"},
       {"@type": "City", "name": "Huntsville, TX"}
     ],
-    "priceRange": "$$",
+    "priceRange": "$199-$399",
     "image": "https://escapepoolservices.com/logo.png",
     "openingHoursSpecification": [
       {
@@ -100,32 +100,27 @@
     },
   -->
 
-  <!-- ═════════════════════════════════════════════════════════════════
-       GOOGLE ADS CONVERSION TRACKING
-       [REPLACE] - Add your Conversion ID and Conversion Label below.
-       Find these in Google Ads → Tools → Conversions → click the conversion → Tag setup → Use Google tag.
-       ═════════════════════════════════════════════════════════════════ -->
-  <!--
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-CONVERSION_ID"></script>
+  <!-- Google tag (gtag.js) — Google Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18124405751"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'AW-CONVERSION_ID');
+    gtag('config', 'AW-18124405751');
 
-    // Conversion event helper — called from weekly-cleaning.js on tel:, sms:, and form submit.
+    // [REPLACE CONVERSION_LABEL] — conversion-action label from Google Ads → Conversions → action → Tag setup.
+    // Fired from weekly-cleaning.js on tel:, sms:, and form submit.
     function gtag_report_conversion(url) {
       var callback = function () {
         if (typeof(url) != 'undefined') { window.location = url; }
       };
       gtag('event', 'conversion', {
-        'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
+        'send_to': 'AW-18124405751/CONVERSION_LABEL',
         'event_callback': callback
       });
       return false;
     }
   </script>
-  -->
 </head>
 <body>
 
@@ -133,7 +128,7 @@
   <header class="lp-header">
     <div class="lp-header__inner">
       <a href="/" class="lp-header__logo" aria-label="Escape Pool Services">
-        <img src="logo.svg" alt="Escape Pool Services" width="176" height="96" fetchpriority="high">
+        <img src="logo.svg" alt="Escape Pool Services" width="132" height="72" fetchpriority="high">
       </a>
       <div class="lp-header__actions">
         <a href="tel:+18327646224" class="lp-header__phone" data-conversion="call">
@@ -147,16 +142,7 @@
 
   <!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
   <section class="hero">
-    <!-- Pool photo background — responsive picture serves the right size + format -->
-    <picture class="hero__bg">
-      <source media="(min-width: 768px)" type="image/webp" srcset="hero-pool.webp">
-      <source media="(min-width: 768px)" type="image/jpeg" srcset="hero-pool.jpg">
-      <source type="image/webp" srcset="hero-pool-mobile.webp">
-      <img src="hero-pool-mobile.jpg" alt="" class="hero__bg-img" fetchpriority="high" decoding="async">
-    </picture>
-    <div class="hero__overlay" aria-hidden="true"></div>
-    <div class="hero__glow" aria-hidden="true"></div>
-
+    <div class="hero__bg" aria-hidden="true"></div>
 
     <div class="container">
       <div class="hero__grid">
@@ -169,12 +155,11 @@
           </span>
 
           <h1 class="hero__title">
-            Your weekly pool service,<br>
-            <em>handled.</em>
+            Weekly pool cleaning in <em>Spring, TX</em> — handled.
           </h1>
 
           <p class="hero__sub">
-            We skim, brush, vacuum, balance, and inspect — every week, like clockwork. Same friendly tech, no contracts.
+            We skim, brush, vacuum, balance, and inspect — every week, like clockwork. Same tech, no contracts.
             <strong>Starting at $199/mo. Plus a free filter cleaning for new customers — a $125 value.</strong>
           </p>
 
@@ -228,20 +213,21 @@
             <h2>Get your free quote</h2>
             <p class="hero__form-sub">A real person texts you back within an hour during business hours.</p>
 
+            <!-- ZIP first — qualifies the lead before the rest of the form is filled out. -->
+            <div class="field">
+              <label for="formZip" class="sr-only">ZIP code</label>
+              <input type="text" id="formZip" name="zip" placeholder="ZIP code (so we can confirm coverage)" required autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" inputmode="numeric">
+            </div>
+            <div class="zip-feedback" id="zipFeedback" aria-live="polite"></div>
+
             <div class="field">
               <label for="formName" class="sr-only">Full name</label>
               <input type="text" id="formName" name="name" placeholder="Full name" required autocomplete="name">
             </div>
 
-            <div class="field-row">
-              <div class="field">
-                <label for="formPhone" class="sr-only">Phone number</label>
-                <input type="tel" id="formPhone" name="phone" placeholder="Phone number" required autocomplete="tel" inputmode="tel">
-              </div>
-              <div class="field">
-                <label for="formZip" class="sr-only">ZIP code</label>
-                <input type="text" id="formZip" name="zip" placeholder="ZIP code" required autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" inputmode="numeric">
-              </div>
+            <div class="field">
+              <label for="formPhone" class="sr-only">Phone number</label>
+              <input type="tel" id="formPhone" name="phone" placeholder="Phone number" required autocomplete="tel" inputmode="tel">
             </div>
 
             <div class="field">
@@ -255,7 +241,7 @@
             </button>
 
             <p class="form-fineprint">
-              By submitting, you agree to receive a follow-up text or call about your quote. No spam, ever.
+              By submitting, I consent to Escape Pool Services contacting me by call or text at the number above, including by automated means, about my quote. Consent is not a condition of purchase. Msg &amp; data rates may apply. Reply STOP to opt out. See our <a href="/privacy.html">Privacy Policy</a>.
             </p>
 
             <div class="form-or">or contact us directly</div>
@@ -274,60 +260,6 @@
         </div>
 
       </div>
-    </div>
-
-    <!-- Animated rippling water — pure SVG path morphing, no JS, GPU-accelerated -->
-    <div class="hero__water" aria-hidden="true">
-      <svg viewBox="0 0 1440 220" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="hw-deep" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#4BA8A8" stop-opacity="0"/>
-            <stop offset="50%" stop-color="#3D8F8F" stop-opacity="0.6"/>
-            <stop offset="100%" stop-color="#0F1F33" stop-opacity="1"/>
-          </linearGradient>
-          <linearGradient id="hw-shimmer" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#6BC4C4" stop-opacity="0"/>
-            <stop offset="50%" stop-color="#6BC4C4" stop-opacity="0.55"/>
-            <stop offset="100%" stop-color="#6BC4C4" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-
-        <!-- Back layer — slowest, deepest -->
-        <path fill="url(#hw-deep)" opacity="0.55"
-              d="M0,80 C240,120 480,40 720,80 C960,120 1200,40 1440,80 L1440,220 L0,220 Z">
-          <animate attributeName="d" dur="14s" repeatCount="indefinite"
-            values="M0,80 C240,120 480,40 720,80 C960,120 1200,40 1440,80 L1440,220 L0,220 Z;
-                    M0,100 C240,60 480,140 720,100 C960,60 1200,140 1440,100 L1440,220 L0,220 Z;
-                    M0,80 C240,120 480,40 720,80 C960,120 1200,40 1440,80 L1440,220 L0,220 Z"/>
-        </path>
-
-        <!-- Middle layer -->
-        <path fill="url(#hw-deep)" opacity="0.7"
-              d="M0,140 C320,180 640,100 960,140 C1200,180 1280,110 1440,140 L1440,220 L0,220 Z">
-          <animate attributeName="d" dur="20s" repeatCount="indefinite"
-            values="M0,140 C320,180 640,100 960,140 C1200,180 1280,110 1440,140 L1440,220 L0,220 Z;
-                    M0,160 C320,120 640,180 960,160 C1200,120 1280,180 1440,160 L1440,220 L0,220 Z;
-                    M0,140 C320,180 640,100 960,140 C1200,180 1280,110 1440,140 L1440,220 L0,220 Z"/>
-        </path>
-
-        <!-- Front layer — solid, matches the trust strip below -->
-        <path fill="#0F1F33"
-              d="M0,170 C240,190 480,150 720,170 C960,190 1200,150 1440,170 L1440,220 L0,220 Z">
-          <animate attributeName="d" dur="10s" repeatCount="indefinite"
-            values="M0,170 C240,190 480,150 720,170 C960,190 1200,150 1440,170 L1440,220 L0,220 Z;
-                    M0,180 C240,160 480,200 720,180 C960,160 1200,200 1440,180 L1440,220 L0,220 Z;
-                    M0,170 C240,190 480,150 720,170 C960,190 1200,150 1440,170 L1440,220 L0,220 Z"/>
-        </path>
-
-        <!-- Shimmer line drifting across the surface -->
-        <path stroke="url(#hw-shimmer)" stroke-width="1.2" fill="none"
-              d="M0,90 C240,130 480,50 720,90 C960,130 1200,50 1440,90">
-          <animate attributeName="d" dur="14s" repeatCount="indefinite"
-            values="M0,90 C240,130 480,50 720,90 C960,130 1200,50 1440,90;
-                    M0,110 C240,70 480,150 720,110 C960,70 1200,150 1440,110;
-                    M0,90 C240,130 480,50 720,90 C960,130 1200,50 1440,90"/>
-        </path>
-      </svg>
     </div>
   </section>
 
@@ -349,7 +281,7 @@
         </div>
         <div class="trust-item">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M9 12l2 2 4-4"/></svg>
-          <span><strong>Money-back</strong> on first month if you aren't thrilled</span>
+          <span><strong>No contracts</strong> — cancel anytime, month-to-month</span>
         </div>
       </div>
     </div>
@@ -644,8 +576,13 @@
   <footer class="lp-footer">
     <div class="container">
       <div class="lp-footer__row">
-        <div>&copy; 2026 Escape Pool Services · Spring, TX</div>
+        <div>
+          &copy; 2026 Escape Pool Services · Locally owned in Spring, TX · Licensed &amp; Insured<br>
+          <span class="lp-footer__areas">Serving Spring, Conroe, Klein, Tomball, The Woodlands, Willis &amp; Huntsville</span>
+        </div>
         <div class="lp-footer__links">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
           <a href="tel:+18327646224">(832) 764-6224</a>
           <a href="mailto:Will@escapepools.com">Will@escapepools.com</a>
         </div>

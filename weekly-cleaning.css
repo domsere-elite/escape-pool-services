@@ -27,7 +27,7 @@
   --r-md: 14px;
   --r-lg: 22px;
   --easing: cubic-bezier(0.22, 1, 0.36, 1);
-  --font-display: 'Syne', system-ui, sans-serif;
+  --font-display: 'Fraunces', 'Times New Roman', Georgia, serif;
   --font-body:    'Be Vietnam Pro', system-ui, sans-serif;
   --container: 1200px;
 }
@@ -104,19 +104,19 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
 .lp-header__inner {
   max-width: var(--container);
   margin: 0 auto;
-  padding: 14px clamp(20px, 4vw, 40px);
+  padding: 10px clamp(20px, 4vw, 40px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
 }
 .lp-header__logo img {
-  height: 96px;
+  height: 64px;
   width: auto;
   display: block;
 }
 @media (max-width: 640px) {
-  .lp-header__logo img { height: 72px; }
+  .lp-header__logo img { height: 52px; }
 }
 .lp-header__actions {
   display: flex;
@@ -127,14 +127,21 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 15px;
   color: var(--navy);
-  padding: 8px 4px;
-  transition: color 0.2s var(--easing);
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(75, 168, 168, 0.08);
+  border: 1px solid rgba(75, 168, 168, 0.18);
+  transition: background 0.2s var(--easing), border-color 0.2s var(--easing), color 0.2s var(--easing);
 }
-.lp-header__phone:hover { color: var(--teal); }
-.lp-header__phone svg { color: var(--teal); }
+.lp-header__phone:hover {
+  background: rgba(75, 168, 168, 0.16);
+  border-color: var(--teal);
+  color: var(--navy-deep);
+}
+.lp-header__phone svg { color: var(--teal); flex-shrink: 0; }
 
 /* ═══════════════════════════════════════════════════════════════
    BUTTONS
@@ -201,68 +208,39 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
 .btn-full { width: 100%; }
 
 /* ═══════════════════════════════════════════════════════════════
-   HERO
+   HERO — light editorial. Cream base with a single soft teal wash
+   and a fine top→bottom fade. Lets typography + form do the work.
    ═══════════════════════════════════════════════════════════════ */
 .hero {
   position: relative;
-  background: var(--navy-deep);  /* fallback while photo loads */
-  color: var(--cream);
+  background: var(--cream-soft);
+  color: var(--ink);
   overflow: hidden;
-  padding: clamp(32px, 5vw, 60px) 0 clamp(140px, 14vw, 180px);
+  padding: clamp(36px, 5vw, 72px) 0 clamp(56px, 7vw, 96px);
   isolation: isolate;
 }
 
-/* Pool photo background — fills the hero, preserves the pool's center */
 .hero__bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  display: block;
-}
-.hero__bg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  filter: saturate(1.05);
-  /* Subtle slow zoom adds life to a still photo without being noticeable. */
-  animation: hero-pan 32s ease-in-out infinite alternate;
-  will-change: transform;
-}
-@keyframes hero-pan {
-  0%   { transform: scale(1.02) translate(-0.5%, 0%); }
-  100% { transform: scale(1.06) translate(0.5%, -1%); }
-}
-
-/* Navy gradient overlay — keeps text readable, sets the mood */
-.hero__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+  pointer-events: none;
   background:
-    linear-gradient(110deg,
-      rgba(15, 31, 51, 0.88) 0%,
-      rgba(15, 31, 51, 0.62) 45%,
-      rgba(27, 65, 101, 0.42) 75%,
-      rgba(75, 168, 168, 0.18) 100%
-    ),
-    /* Slight bottom darkening to blend with trust strip below */
-    linear-gradient(180deg, transparent 65%, rgba(15, 31, 51, 0.55) 100%);
-  pointer-events: none;
+    radial-gradient(ellipse 70% 55% at 85% 15%, rgba(75, 168, 168, 0.16) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 60% at 5% 90%, rgba(212, 168, 83, 0.07) 0%, transparent 60%),
+    linear-gradient(180deg, var(--cream-soft) 0%, var(--cream) 100%);
 }
-
-.hero__glow {
+/* A hairline horizon line at the bottom — divides hero from the dark trust strip
+   without being a hard cut. */
+.hero::after {
+  content: '';
   position: absolute;
-  top: -20%;
-  right: -10%;
-  width: 55%;
-  height: 75%;
-  background: radial-gradient(circle, rgba(212, 168, 83, 0.22) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: 2;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(27, 45, 75, 0.12), transparent);
+  z-index: 1;
 }
 
-/* Light rays — sun penetrating water from above. SVG, GPU-friendly. */
 /* ─── Animation #2 — pulsing "live" dot in eyebrow ─── */
 .hero__eyebrow .live-dot {
   display: inline-block;
@@ -277,48 +255,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
 @keyframes live-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(212, 168, 83, 0.7); transform: scale(1); }
   50%      { box-shadow: 0 0 0 7px rgba(212, 168, 83, 0); transform: scale(1.1); }
-}
-
-/* ─── Animation #1 — gradient sweep on hero accent word ─── */
-.hero__title em {
-  background: linear-gradient(
-    110deg,
-    var(--teal-bright) 0%,
-    #B0E5E5 25%,
-    var(--gold-bright) 50%,
-    #B0E5E5 75%,
-    var(--teal-bright) 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: title-sweep 8s ease-in-out infinite;
-  will-change: background-position;
-  /* Give gradient-clipped descenders room — without this, letters like
-     'p', 'y', 'g' can render with their bottoms clipped on some browsers. */
-  padding-bottom: 0.08em;
-  display: inline-block;
-}
-@keyframes title-sweep {
-  0%, 100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
-}
-
-/* Animated water surface at the bottom of the hero */
-.hero__water {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 220px;
-  pointer-events: none;
-  z-index: 5;
-}
-.hero__water svg {
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 
 .hero__grid {
@@ -339,33 +275,33 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--teal-bright);
-  margin-bottom: 14px;
+  color: var(--teal);
+  margin-bottom: 16px;
 }
 .hero__eyebrow::before {
   content: '';
   display: inline-block;
   width: 32px;
   height: 1px;
-  background: var(--teal-bright);
+  background: var(--teal);
 }
 
 .hero__title {
-  font-size: clamp(2.6rem, 5.4vw, 4.4rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  margin-bottom: 22px;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5.6vw, 4.6rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+  color: var(--navy-deep);
+  margin-bottom: 24px;
   text-wrap: balance;
   padding-bottom: 0.05em;
 }
 .hero__title em {
   font-style: italic;
-  font-weight: 700;
-  background: linear-gradient(110deg, var(--teal-bright) 0%, #B0E5E5 35%, var(--gold-bright) 95%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 600;
+  color: var(--teal);
+  font-feature-settings: 'ss01' on;
   position: relative;
   display: inline-block;
   padding: 0 0.04em;
@@ -373,26 +309,26 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
 .hero__title em::after {
   content: '';
   position: absolute;
-  left: 0; right: 0; bottom: -10px;
-  height: 8px;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'><path d='M0,4 C25,0 50,8 75,4 C100,0 125,8 150,4 C175,0 190,7 200,4' stroke='%236BC4C4' stroke-width='1.6' fill='none' stroke-linecap='round' opacity='0.65'/></svg>") center / 100% 100% no-repeat;
+  left: 0; right: 0; bottom: -8px;
+  height: 7px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'><path d='M0,4 C25,0 50,8 75,4 C100,0 125,8 150,4 C175,0 190,7 200,4' stroke='%23D4A853' stroke-width='1.8' fill='none' stroke-linecap='round' opacity='0.85'/></svg>") center / 100% 100% no-repeat;
   pointer-events: none;
 }
 
 .hero__sub {
-  font-size: clamp(15.5px, 1.4vw, 17.5px);
-  line-height: 1.5;
-  color: rgba(245, 240, 232, 0.85);
-  margin-bottom: 22px;
+  font-size: clamp(16px, 1.4vw, 17.5px);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-bottom: 26px;
   max-width: 540px;
 }
-.hero__sub strong { color: var(--cream); font-weight: 600; }
+.hero__sub strong { color: var(--navy); font-weight: 600; }
 
 .hero__pills {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
 .hero__pill {
   display: inline-flex;
@@ -401,13 +337,12 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   padding: 8px 14px;
   font-size: 13px;
   font-weight: 500;
-  color: var(--cream);
-  background: rgba(245, 240, 232, 0.08);
-  border: 1px solid rgba(245, 240, 232, 0.14);
+  color: var(--navy);
+  background: rgba(75, 168, 168, 0.06);
+  border: 1px solid rgba(75, 168, 168, 0.22);
   border-radius: 999px;
-  backdrop-filter: blur(4px);
 }
-.hero__pill svg { color: var(--teal-bright); flex-shrink: 0; }
+.hero__pill svg { color: var(--teal); flex-shrink: 0; }
 
 .hero__cta-row {
   display: flex;
@@ -421,14 +356,15 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   gap: 8px;
   font-size: 15px;
   font-weight: 600;
-  color: var(--cream);
+  color: var(--navy);
   padding: 14px 4px;
   border-bottom: 1.5px solid transparent;
-  transition: border-color 0.2s var(--easing);
+  transition: border-color 0.2s var(--easing), color 0.2s var(--easing);
 }
-.hero__call-link:hover { border-color: var(--teal-bright); color: var(--teal-bright); }
+.hero__call-link svg { color: var(--teal); }
+.hero__call-link:hover { border-color: var(--teal); color: var(--teal); }
 
-/* ─── Hero Form Card ─── */
+/* ─── Hero Form Card — clean white card on light hero ─── */
 .hero__form-wrap { position: relative; }
 .hero__offer-ribbon {
   position: absolute;
@@ -448,67 +384,30 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   gap: 6px;
 }
 .hero__form {
-  background: rgba(245, 240, 232, 0.07);
-  color: var(--cream);
+  background: var(--white);
+  color: var(--ink);
   padding: clamp(30px, 3vw, 42px) clamp(26px, 3vw, 36px) clamp(28px, 3vw, 34px);
   border-radius: var(--r-lg);
-  border: 1px solid rgba(245, 240, 232, 0.16);
-  backdrop-filter: blur(22px) saturate(140%);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  border: 1px solid var(--line);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.08) inset,
-    0 24px 70px -20px rgba(15, 31, 51, 0.6);
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 30px 70px -25px rgba(15, 31, 51, 0.22),
+    0 4px 14px -8px rgba(15, 31, 51, 0.10);
   position: relative;
-  overflow: hidden;
-}
-.hero__form::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  pointer-events: none;
 }
 .hero__form h2 {
-  font-size: clamp(1.5rem, 2.4vw, 1.85rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 2.4vw, 1.95rem);
   margin-bottom: 6px;
-  color: var(--cream);
-  font-weight: 700;
+  color: var(--navy-deep);
+  font-weight: 600;
   letter-spacing: -0.015em;
+  line-height: 1.15;
 }
 .hero__form-sub {
   font-size: 14px;
-  color: rgba(245, 240, 232, 0.7);
+  color: var(--ink-soft);
   margin-bottom: 22px;
-}
-
-/* ─── Glass form fields override ─── */
-.hero__form .field input,
-.hero__form .field select,
-.hero__form .field textarea {
-  background: rgba(15, 31, 51, 0.35);
-  border: 1px solid rgba(245, 240, 232, 0.18);
-  color: var(--cream);
-}
-.hero__form .field input::placeholder,
-.hero__form .field textarea::placeholder {
-  color: rgba(245, 240, 232, 0.5);
-}
-.hero__form .field input:focus,
-.hero__form .field select:focus,
-.hero__form .field textarea:focus {
-  border-color: var(--teal-bright);
-  background: rgba(15, 31, 51, 0.5);
-  box-shadow: 0 0 0 3px rgba(107, 196, 196, 0.18);
-}
-.hero__form .form-fineprint {
-  color: rgba(245, 240, 232, 0.55);
-}
-.hero__form .form-or {
-  color: rgba(245, 240, 232, 0.55);
-}
-.hero__form .form-or::before, .hero__form .form-or::after {
-  background: rgba(245, 240, 232, 0.18);
 }
 
 /* ─── Form Fields ─── */
@@ -739,23 +638,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   background: radial-gradient(circle, rgba(107, 196, 196, 0.45) 0%, transparent 65%);
   filter: blur(20px);
   pointer-events: none;
-}
-.included__cta::after {
-  /* Decorative gold "20% OFF" stamp */
-  content: '20% OFF';
-  position: absolute;
-  top: 28px;
-  right: -38px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
-  color: var(--navy-deep);
-  padding: 6px 50px;
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  transform: rotate(20deg);
-  box-shadow: 0 8px 24px -6px rgba(212, 168, 83, 0.5);
-  z-index: 1;
 }
 .included__cta-eyebrow {
   font-size: 11.5px;
@@ -1391,17 +1273,34 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
 }
 
 @media (max-width: 640px) {
-  .lp-header__phone span { display: none; }
+  /* Phone number stays visible on mobile — calls are higher-intent than form fills
+     for paid-search pool-cleaning traffic. Just compact it. */
+  .lp-header__phone {
+    padding: 8px 12px;
+    font-size: 14px;
+    gap: 6px;
+  }
+  .lp-header__phone svg { width: 16px; height: 16px; }
+
   .field-row { grid-template-columns: 1fr; }
   .form-alt-row { grid-template-columns: 1fr; }
   .lp-footer__row { flex-direction: column; }
 
-  .hero { padding: 40px 0 80px; }
-  .hero__title { font-size: clamp(2.2rem, 9vw, 3rem); }
+  .hero { padding: 32px 0 60px; }
+  .hero__title { font-size: clamp(2.1rem, 8.6vw, 2.8rem); }
+  /* Drop the pills on small mobile — the trust strip just below covers the same
+     ground, and shaving them brings the form ~80px closer to the fold. */
+  .hero__pills { display: none; }
 
   .step__num { font-size: 48px; }
 
   .sticky-cta { bottom: 12px; left: 12px; right: 12px; }
+}
+
+/* On very small screens (≤380px) the header gets crowded — hide the gold CTA
+   and let the phone button do the work. */
+@media (max-width: 380px) {
+  .lp-header .btn-sm { display: none; }
 }
 
 /* Fade-in on scroll */
@@ -1415,13 +1314,96 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   transform: translateY(0);
 }
 
+/* ─── Hero form ZIP service-area feedback (under the ZIP field) ─── */
+.zip-feedback {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: -6px 0 14px;
+  min-height: 0;
+  color: var(--ink-soft);
+  transition: color 0.2s var(--easing);
+}
+.zip-feedback:empty { display: none; }
+.zip-feedback.is-yes { color: var(--teal); }
+.zip-feedback.is-no  { color: var(--gold-deep); }
+.zip-feedback strong { font-weight: 700; }
+.zip-feedback a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Footer service-area line */
+.lp-footer__areas {
+  display: inline-block;
+  margin-top: 4px;
+  color: rgba(245, 240, 232, 0.45);
+  font-size: 12.5px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LEGAL PAGES — privacy + terms
+   ═══════════════════════════════════════════════════════════════ */
+.legal {
+  background: var(--cream);
+  color: var(--ink);
+  padding: clamp(48px, 7vw, 88px) 0 clamp(64px, 9vw, 120px);
+}
+.legal__inner {
+  max-width: 760px;
+}
+.legal__back {
+  display: inline-block;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--teal);
+  margin-bottom: 24px;
+}
+.legal__back:hover { color: var(--navy); }
+.legal h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.legal__meta {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.legal h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 36px 0 12px;
+}
+.legal p,
+.legal ul {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+.legal ul {
+  list-style: disc;
+  padding-left: 22px;
+}
+.legal li { margin-bottom: 6px; }
+.legal a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.legal a:hover { color: var(--navy); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
   .reveal { opacity: 1; transform: none; }
-  /* SMIL animations on the SVG don't respond to CSS animation-duration —
-     freeze the water at its starting frame. */
-  .hero__water svg animate { display: none; }
 }
