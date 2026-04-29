@@ -325,30 +325,23 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.06;
+  line-height: 1.14;
   color: var(--cream);
   margin-bottom: 24px;
   text-wrap: balance;
 }
+/* Native underline with skip-ink: the browser automatically interrupts the
+   line around descenders (p, g, etc.), so it never crosses the letterforms. */
 .hero__title em {
   font-style: normal;
   font-weight: 700;
   color: var(--teal-bright);
-  position: relative;
-  display: inline-block;
-  padding: 0 0.02em;
   white-space: nowrap;
-}
-/* Clean solid teal underline under the accent — cleaner than the prior
-   hand-drawn wavy ornament. Reads as a confident pen-mark, not scribbly. */
-.hero__title em::after {
-  content: '';
-  position: absolute;
-  left: 0.04em; right: 0.04em; bottom: -0.06em;
-  height: 3px;
-  background: var(--teal-bright);
-  border-radius: 2px;
-  opacity: 0.85;
+  text-decoration: underline;
+  text-decoration-color: var(--teal-bright);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.18em;
+  text-decoration-skip-ink: auto;
 }
 
 .hero__sub {
