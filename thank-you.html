@@ -13,16 +13,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="weekly-cleaning.css">
 
-  <!-- Google tag (gtag.js) — Google Ads -->
+  <!-- Google tag (gtag.js) — Google Ads. The page-load itself IS the conversion:
+       the "Submit lead form (1)" action uses URL-contains-"thank-you" detection,
+       so loading this page fires the form-submit conversion automatically. -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18124405751"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'AW-18124405751');
-
-    // [REPLACE CONVERSION_LABEL] — fires the form-submit conversion on this thank-you page.
-    gtag('event', 'conversion', {'send_to': 'AW-18124405751/CONVERSION_LABEL'});
   </script>
 
   <style>

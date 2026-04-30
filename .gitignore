@@ -3,3 +3,10 @@
 Thumbs.db
 node_modules/
 *.log
+
+# WSL/Windows alternate-data-stream artifacts
+*:Zone.Identifier
+
+# Local design source bundles & reference renders (not part of the deployed site)
+Escape Services-handoff/
+Generated Image *.png

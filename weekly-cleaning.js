@@ -141,15 +141,12 @@
     heroZip.addEventListener('blur', checkHeroZip);
   }
 
-  /* ─── 5. Conversion tracking ─────────────────────────────
-     [REPLACE] — when you add your Google Ads conversion ID/label
-     in weekly-cleaning.html, this will fire events automatically.
-     Until then it just no-ops.
+  /* ─── 5. Engagement tracking ─────────────────────────────
+     The form-submit Ads conversion fires automatically on /thank-you.html
+     page-load (URL-contains rule). The events below are GA4 engagement
+     signals only — useful for diagnosing CTR mix but not Ads conversions.
      ───────────────────────────────────────────────────────── */
-  function fireConversion(type) {
-    if (typeof gtag_report_conversion === 'function') {
-      try { gtag_report_conversion(); } catch (_) {}
-    }
+  function fireEngagement(type) {
     if (typeof gtag === 'function') {
       try {
         gtag('event', 'lp_action', { event_category: 'engagement', event_label: type });
@@ -159,15 +156,15 @@
 
   document.querySelectorAll('[data-conversion]').forEach(el => {
     el.addEventListener('click', function () {
-      fireConversion(this.dataset.conversion || 'click');
+      fireEngagement(this.dataset.conversion || 'click');
     });
   });
 
-  // Form submit — fire before navigation. Netlify handles the actual POST.
+  // Form submit — fire engagement event then let Netlify handle the POST + redirect.
   const form = document.getElementById('quoteForm');
   if (form) {
     form.addEventListener('submit', function () {
-      fireConversion('form_submit');
+      fireEngagement('form_submit');
       const btn = document.getElementById('submitBtn');
       if (btn) {
         btn.disabled = true;
