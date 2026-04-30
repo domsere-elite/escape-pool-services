@@ -368,11 +368,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
 .hero__title em {
   font-style: normal;
   font-weight: 800;
-  color: var(--teal-bright);
+  color: var(--gold);
   white-space: nowrap;
   text-decoration: underline;
-  text-decoration-color: var(--teal-bright);
-  text-decoration-thickness: 3px;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 2px;
   text-underline-offset: 0.18em;
   text-decoration-skip-ink: auto;
 }
