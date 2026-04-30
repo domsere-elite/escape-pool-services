@@ -1359,8 +1359,16 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
 }
 
 @media (max-width: 640px) {
-  /* Phone number stays visible on mobile — calls are higher-intent than form fills
-     for paid-search pool-cleaning traffic. Just compact it. */
+  /* Header — the new wider logo lockup (3.9:1) eats more horizontal space than
+     the old square mark, so we shrink the logo and tighten gaps/padding while
+     keeping the phone number visible (calls > form for pool-cleaning paid
+     traffic, so phone has to stay readable on mobile). The Free Quote button
+     drops at 480px (rule below) to free up the room. */
+  .lp-header__inner {
+    padding: 8px clamp(14px, 4vw, 20px);
+    gap: 8px;
+  }
+  .lp-header__logo-svg { height: 40px; }
   .lp-header__phone {
     padding: 8px 12px;
     font-size: 14px;
@@ -1372,21 +1380,42 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; letter-spac
   .form-alt-row { grid-template-columns: 1fr; }
   .lp-footer__row { flex-direction: column; }
 
-  .hero { padding: 32px 0 60px; }
+  .hero { padding: 28px 0 56px; }
   .hero__title { font-size: clamp(2.1rem, 8.6vw, 2.8rem); }
   /* Drop the pills on small mobile — the trust strip just below covers the same
      ground, and shaving them brings the form ~80px closer to the fold. */
   .hero__pills { display: none; }
+
+  /* Form card alignment — kill the soft glow that extends 16px outside the
+     card on each side. On desktop it's a nice photo-pool reflection; on mobile
+     it makes the form appear wider than the hero copy above and reads as
+     misaligned. Also tighten card padding so inputs aren't cramped. */
+  .hero__form-wrap::before { display: none; }
+  .hero__form { padding: 26px 22px 24px; }
+  .hero__offer-ribbon {
+    top: -14px;
+    right: 16px;
+    font-size: 12px;
+    padding: 7px 14px;
+  }
 
   .step__num { font-size: 48px; }
 
   .sticky-cta { bottom: 12px; left: 12px; right: 12px; }
 }
 
-/* On very small screens (≤380px) the header gets crowded — hide the gold CTA
-   and let the phone button do the work. */
-@media (max-width: 380px) {
+/* Below 480px (covers most iPhones) the header drops the Free Quote button
+   so the logo + phone-pill have room to breathe. The hero CTA + sticky bottom
+   bar still expose Free Quote prominently — no conversion path is lost. */
+@media (max-width: 480px) {
   .lp-header .btn-sm { display: none; }
+}
+/* Tighten the booking pill on the smallest screens so it stays one line. */
+@media (max-width: 360px) {
+  .hero__eyebrow--pill {
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+  }
 }
 
 /* Fade-in on scroll */
