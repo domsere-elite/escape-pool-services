@@ -429,31 +429,53 @@ function V1Page() {
             overflow: "hidden", display: "grid", gridTemplateColumns: "1fr 1.3fr",
             marginBottom: 24,
           }} className="v1-feat-testi">
-            <img
-              src="/assets/pool-water-sun.png"
-              alt=""
-              loading="lazy"
-              style={{
-                width: "100%",
-                height: "100%",
-                minHeight: 280,
-                objectFit: "cover",
-                display: "block",
-              }}
-            />
+            <div style={{ position: "relative", display: "grid", gridTemplateRows: "1fr 1fr", minHeight: 420, background: "#0a2540" }}>
+              <div style={{ position: "relative", overflow: "hidden" }}>
+                <img
+                  src="/assets/pool-before.jpg"
+                  alt="Lauren P.'s pool before service — green and full of debris"
+                  loading="lazy"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+                <span style={{
+                  position: "absolute", top: 14, left: 14,
+                  background: "rgba(10, 27, 46, 0.88)", color: "#fff",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: 10, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase",
+                  padding: "5px 11px", borderRadius: 4,
+                  backdropFilter: "blur(4px)",
+                }}>Before</span>
+              </div>
+              <div style={{ position: "relative", overflow: "hidden", borderTop: "1px solid rgba(255,255,255,0.12)" }}>
+                <img
+                  src="/assets/pool-after.jpg"
+                  alt="The same pool after Escape's weekly service — clear and clean"
+                  loading="lazy"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+                <span style={{
+                  position: "absolute", top: 14, left: 14,
+                  background: "rgba(201, 163, 91, 0.95)", color: t.ink,
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: 10, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase",
+                  padding: "5px 11px", borderRadius: 4,
+                  backdropFilter: "blur(4px)",
+                }}>After · 2 weeks</span>
+              </div>
+            </div>
             <div style={{ padding: "36px 38px" }}>
               <StarRow size={15} color={t.gold} />
               <blockquote style={{ margin: "14px 0 22px", fontFamily: "'Fraunces', Georgia, serif", fontSize: 22, lineHeight: 1.4, fontWeight: 400, letterSpacing: "-0.005em", color: t.ink }}>
-                "Honestly the easiest thing I've outsourced. Will and his team show up like clockwork — pool's never been clearer, and chemicals stopped being something I think about."
+                "We had a green pool when they took over. Two weeks later, you could see the bottom drain. Same crew every visit, super respectful of the dogs and the gate."
               </blockquote>
-              <div style={{ fontWeight: 600, fontSize: 14.5 }}>Marcus R.</div>
-              <div style={{ fontSize: 13, color: t.ink3 }}>Klein, TX · Weekly customer since 2024</div>
+              <div style={{ fontWeight: 600, fontSize: 14.5 }}>Lauren P.</div>
+              <div style={{ fontSize: 13, color: t.ink3 }}>Spring, TX · Weekly customer</div>
             </div>
           </article>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="v1-testi-grid">
             {[
-              { name: "Lauren P.", loc: "Spring, TX", body: "We had a green pool when they took over. Two weeks later, you could see the bottom drain. Same crew every visit, super respectful of the dogs and the gate." },
+              { name: "Marcus R.", loc: "Klein, TX", body: "Honestly the easiest thing I've outsourced. Will and his team show up like clockwork — pool's never been clearer, and chemicals stopped being something I think about." },
               { name: "David T.", loc: "The Woodlands, TX", body: "Switched from a national chain after years of inconsistency. Pricing is straightforward, the techs actually communicate, and they caught a pump leak before it became a $2k repair." },
             ].map((q) => (
               <article key={q.name} style={{ background: "#fff", border: `1px solid ${t.rule2}`, borderRadius: 14, padding: 26 }}>
