@@ -95,7 +95,7 @@ function V1Page() {
           letterSpacing: "0.02em", borderBottom: `1px solid rgba(201,163,91,0.18)`,
         }}>
           <span style={{ color: t.gold, marginRight: 8 }}>◆</span>
-          Booking spring routes — limited capacity in 77386, 77381, 77382.{" "}
+          Booking spring routes<span className="v1-urgency-zips"> — limited capacity in 77386, 77381, 77382</span>.{" "}
           <PhoneLink kind="call" style={{ color: t.gold, textDecoration: "underline", textUnderlineOffset: 3, textDecorationThickness: 1, marginLeft: 4 }}>
             Reserve a slot →
           </PhoneLink>

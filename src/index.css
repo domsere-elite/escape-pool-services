@@ -37,6 +37,10 @@ summary { list-style: none; user-select: none; }
 @media (max-width: 600px) {
   .v1-container { padding: 0 20px !important; }
 
+  /* Urgency banner — drop ZIP list on mobile so the line doesn't wrap and
+     push the absolutely-positioned header into the banner's second row. */
+  .v1-urgency-zips { display: none !important; }
+
   /* Header — hide phone link in nav (sticky bar carries the call action) */
   .v1 header { padding: 14px 0 !important; }
   .v1 header [aria-label="Escape Pool Services"] svg { width: 30px !important; height: 30px !important; }
