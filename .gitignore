@@ -2,6 +2,7 @@
 .DS_Store
 Thumbs.db
 node_modules/
+dist/
 *.log
 
 # WSL/Windows alternate-data-stream artifacts

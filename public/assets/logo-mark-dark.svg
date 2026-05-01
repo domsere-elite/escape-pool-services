@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" fill="none" role="img" aria-label="Escape Pool Services">
+  
+  <line x1="18" y1="10" x2="20.5" y2="14.8" stroke="#C9A35B" stroke-width="3" stroke-linecap="round"></line>
+  <line x1="30" y1="5" x2="30" y2="11" stroke="#C9A35B" stroke-width="3" stroke-linecap="round"></line>
+  <line x1="42" y1="10" x2="39.5" y2="14.8" stroke="#C9A35B" stroke-width="3" stroke-linecap="round"></line>
+  
+  <circle cx="30" cy="24" r="9" fill="#C9A35B"></circle>
+  
+  <path d="M6 42 Q14 38, 22 42 T38 42 T54 42" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path>
+  <path d="M6 50 Q14 46, 22 50 T38 50 T54 50" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.55"></path>
+</svg>

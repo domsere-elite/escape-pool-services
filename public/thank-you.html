@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You — We'll Be In Touch | Escape Pool Services</title>
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-mark-dark.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/legal.css">
+
+  <!-- Google tag (gtag.js) — Google Ads. The page-load itself IS the conversion:
+       the "Submit lead form (1)" action uses URL-contains-"thank-you" detection,
+       so loading this page fires the form-submit conversion automatically. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18124405751"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18124405751');
+  </script>
+
+  <style>
+    .ty-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #06121F 0%, #0A1B2E 60%, #152A45 100%);
+      color: #FBFAF6;
+      padding: 60px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .ty-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(201, 163, 91, 0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .ty-card {
+      position: relative;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      background: rgba(251, 250, 246, 0.04);
+      border: 1px solid rgba(251, 250, 246, 0.10);
+      border-radius: 16px;
+      padding: clamp(40px, 6vw, 64px) clamp(28px, 4vw, 48px);
+      backdrop-filter: blur(8px);
+    }
+    .ty-check {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #C9A35B 0%, #E8D9B4 100%);
+      color: #0A1B2E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 40px -8px rgba(201, 163, 91, 0.55);
+      animation: ty-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    @keyframes ty-pop {
+      from { opacity: 0; transform: scale(0.6); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .ty-card h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(28px, 4vw, 38px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin: 0 0 16px;
+      color: #FBFAF6;
+    }
+    .ty-card h1 em {
+      color: #C9A35B;
+      font-style: italic;
+    }
+    .ty-card > p {
+      font-size: 16.5px;
+      color: rgba(251, 250, 246, 0.82);
+      line-height: 1.65;
+      margin: 0 0 24px;
+    }
+    .ty-next {
+      background: rgba(251, 250, 246, 0.06);
+      border: 1px solid rgba(251, 250, 246, 0.10);
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin: 28px 0;
+      text-align: left;
+    }
+    .ty-next h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #C9A35B;
+      font-weight: 700;
+      margin: 0 0 14px;
+    }
+    .ty-next ol {
+      list-style: none;
+      counter-reset: step;
+      padding: 0;
+      margin: 0;
+    }
+    .ty-next li {
+      counter-increment: step;
+      padding: 6px 0 6px 32px;
+      position: relative;
+      font-size: 15px;
+      color: rgba(251, 250, 246, 0.82);
+      line-height: 1.55;
+    }
+    .ty-next li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #C9A35B;
+      color: #0A1B2E;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ty-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .ty-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      letter-spacing: 0.005em;
+      transition: filter 0.15s ease;
+    }
+    .ty-btn--gold { background: #C9A35B; color: #0A1B2E; }
+    .ty-btn--ghost {
+      background: rgba(251, 250, 246, 0.06);
+      color: #FBFAF6;
+      border: 1px solid rgba(251, 250, 246, 0.18);
+    }
+    .ty-btn:hover { filter: brightness(0.95); }
+  </style>
+</head>
+<body>
+  <main class="ty-wrap">
+    <div class="ty-card">
+      <div class="ty-check">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <h1>Thanks — your <em>quote request</em> is in.</h1>
+      <p>Will or one of the team will reach out to the number you provided, usually within an hour during business hours (Mon–Fri 7am–5pm, Sat 8am–4pm).</p>
+
+      <div class="ty-next">
+        <h3>What happens next</h3>
+        <ol>
+          <li>You'll get a text from a real person at Escape with a flat-rate quote.</li>
+          <li>If you're good to go, we set your weekly day and start within the week.</li>
+          <li>Your free filter cleaning ($125 value) gets scheduled within your first month of service.</li>
+        </ol>
+      </div>
+
+      <p style="font-size: 15px;">Something urgent or want to talk now?</p>
+
+      <div class="ty-actions">
+        <a href="tel:+18327646224" class="ty-btn ty-btn--gold">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Call (832) 764-6224
+        </a>
+        <a href="sms:+18327646224?&body=Hi%20Escape%20Pool%2C%20I%20just%20submitted%20a%20quote%20request." class="ty-btn ty-btn--ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Text Us
+        </a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
