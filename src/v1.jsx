@@ -75,10 +75,10 @@ function V1Page() {
   const showUrgency = true;
 
   const heroH1 = {
-    outcome: <>Your pool, <span style={{ color: t.gold, fontStyle: "italic", fontFamily: "'Fraunces', Georgia, serif", fontWeight: 400 }}>this clean.</span> Every week.</>,
-    price: <>Weekly pool care, <span style={{ color: t.gold, fontStyle: "italic", fontFamily: "'Fraunces', Georgia, serif", fontWeight: 400 }}>from $199</span> a month.</>,
-    offer: <>A weekly pool service with a <span style={{ color: t.gold, fontStyle: "italic", fontFamily: "'Fraunces', Georgia, serif", fontWeight: 400 }}>$125 welcome</span>.</>,
-    local: <>Spring's <span style={{ color: t.gold, fontStyle: "italic", fontFamily: "'Fraunces', Georgia, serif", fontWeight: 400 }}>weekly</span> pool service.</>,
+    outcome: <>Your pool, <span style={{ color: t.gold, fontStyle: "italic", fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 400 }}>this clean.</span> Every week.</>,
+    price: <>Weekly pool care, <span style={{ color: t.gold, fontStyle: "italic", fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 400 }}>from $199</span> a month.</>,
+    offer: <>A weekly pool service with a <span style={{ color: t.gold, fontStyle: "italic", fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 400 }}>$125 welcome</span>.</>,
+    local: <>Spring's <span style={{ color: t.gold, fontStyle: "italic", fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 400 }}>weekly</span> pool service.</>,
   }[headline];
 
   return (
@@ -118,7 +118,7 @@ function V1Page() {
             </svg>
             <span style={{ display: "inline-flex", flexDirection: "column", lineHeight: 1 }}>
               <span style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "'Playfair Display', Georgia, serif",
                 fontStyle: "italic",
                 fontWeight: 400,
                 fontSize: 26,
@@ -297,7 +297,7 @@ function V1Page() {
               borderLeft: i === 0 ? "none" : `1px solid ${t.rule2}`,
               padding: "0 8px",
             }}>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 36, fontWeight: 500, lineHeight: 1, color: t.ink, letterSpacing: "-0.02em" }}>{s.n}</div>
+              <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 36, fontWeight: 500, lineHeight: 1, color: t.ink, letterSpacing: "-0.02em" }}>{s.n}</div>
               <div style={{ fontSize: 11.5, fontWeight: 500, color: t.ink3, marginTop: 8, letterSpacing: "0.08em", textTransform: "uppercase" }}>{s.l}</div>
             </div>
           ))}
@@ -309,7 +309,7 @@ function V1Page() {
           <div style={{ display: "grid", gridTemplateColumns: "1.05fr 1fr", gap: 64, alignItems: "start" }} className="v1-included">
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: t.goldDeep, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 14 }}>What's included</div>
-              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400, margin: "0 0 18px", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400, margin: "0 0 18px", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
                 Every visit. Every week. <em style={{ color: t.gold, fontStyle: "italic" }}>One flat rate.</em>
               </h2>
               <p style={{ fontSize: 16.5, lineHeight: 1.65, color: t.ink3, maxWidth: 520, margin: "0 0 32px" }}>
@@ -353,7 +353,7 @@ function V1Page() {
               <div style={{ position: "relative" }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: t.gold, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 12 }}>Weekly Service Plan</div>
                 <div style={{ fontSize: 13, opacity: 0.65, marginBottom: 4 }}>Starting at</div>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 4, fontWeight: 500, lineHeight: 0.9, letterSpacing: "-0.04em", fontFamily: "'Fraunces', Georgia, serif" }}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 4, fontWeight: 500, lineHeight: 0.9, letterSpacing: "-0.04em", fontFamily: "'Playfair Display', Georgia, serif" }}>
                   <span style={{ fontSize: 28, opacity: 0.7 }}>$</span>
                   <span style={{ fontSize: 86 }}>199</span>
                   <span style={{ fontSize: 18, opacity: 0.7, fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>/mo</span>
@@ -392,7 +392,7 @@ function V1Page() {
         <div className="v1-container">
           <div style={{ textAlign: "center", marginBottom: 48, maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: t.goldDeep, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 14 }}>How it works</div>
-            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: "clamp(30px, 4vw, 44px)", fontWeight: 400, margin: 0, letterSpacing: "-0.02em", lineHeight: 1.05 }}>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(30px, 4vw, 44px)", fontWeight: 400, margin: 0, letterSpacing: "-0.02em", lineHeight: 1.05 }}>
               From quote to clean in <em style={{ color: t.gold, fontStyle: "italic" }}>three days</em>.
             </h2>
           </div>
@@ -404,7 +404,7 @@ function V1Page() {
             ].map((s) => (
               <div key={s.n} style={{ background: "#fff", borderRadius: 12, padding: 28, border: `1px solid ${t.rule2}`, position: "relative" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-                  <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 28, fontWeight: 500, color: t.gold, letterSpacing: "-0.02em", lineHeight: 1 }}>{s.n}</span>
+                  <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 28, fontWeight: 500, color: t.gold, letterSpacing: "-0.02em", lineHeight: 1 }}>{s.n}</span>
                   <span style={{ flex: 1, height: 1, background: t.rule2 }} />
                 </div>
                 <h3 style={{ margin: "0 0 8px", fontSize: 18, fontWeight: 600, letterSpacing: "-0.01em" }}>{s.h}</h3>
@@ -419,7 +419,7 @@ function V1Page() {
         <div className="v1-container">
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: t.goldDeep, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 14 }}>What homeowners say</div>
-            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: "clamp(28px, 3.6vw, 40px)", fontWeight: 400, margin: 0, letterSpacing: "-0.02em" }}>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(28px, 3.6vw, 40px)", fontWeight: 400, margin: 0, letterSpacing: "-0.02em" }}>
               Hassle-free, neighborly, on time.
             </h2>
           </div>
@@ -465,7 +465,7 @@ function V1Page() {
             </div>
             <div style={{ padding: "36px 38px" }}>
               <StarRow size={15} color={t.gold} />
-              <blockquote style={{ margin: "14px 0 22px", fontFamily: "'Fraunces', Georgia, serif", fontSize: 22, lineHeight: 1.4, fontWeight: 400, letterSpacing: "-0.005em", color: t.ink }}>
+              <blockquote style={{ margin: "14px 0 22px", fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, lineHeight: 1.4, fontWeight: 400, letterSpacing: "-0.005em", color: t.ink }}>
                 "We had a green pool when they took over. Two weeks later, you could see the bottom drain. Same crew every visit, super respectful of the dogs and the gate."
               </blockquote>
               <div style={{ fontWeight: 600, fontSize: 14.5 }}>Lauren P.</div>
@@ -502,7 +502,7 @@ function V1Page() {
             padding: "6px 14px", borderRadius: 100, fontSize: 11, fontWeight: 700,
             letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 22,
           }}>◆ New customer welcome</div>
-          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 400, margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.05 }}>
+          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 400, margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.05 }}>
             Free filter cleaning. <em style={{ color: t.gold, fontStyle: "italic" }}>$125 value.</em>
           </h2>
           <p style={{ fontSize: 17, color: "rgba(255,255,255,0.78)", maxWidth: 600, margin: "0 auto 32px", lineHeight: 1.6 }}>
@@ -528,7 +528,7 @@ function V1Page() {
         <div className="v1-container" style={{ maxWidth: 760 }}>
           <div style={{ textAlign: "center", marginBottom: 32 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: t.goldDeep, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 12 }}>Common questions</div>
-            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: "clamp(28px, 3.6vw, 38px)", fontWeight: 400, margin: 0, letterSpacing: "-0.02em" }}>
+            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(28px, 3.6vw, 38px)", fontWeight: 400, margin: 0, letterSpacing: "-0.02em" }}>
               Before you sign up.
             </h2>
           </div>
@@ -541,7 +541,7 @@ function V1Page() {
             <details key={q} style={{ borderTop: `1px solid ${t.rule2}`, padding: "20px 4px" }}>
               <summary style={{ cursor: "pointer", fontWeight: 600, fontSize: 16.5, listStyle: "none", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, letterSpacing: "-0.005em" }}>
                 {q}
-                <span style={{ color: t.gold, fontWeight: 400, fontSize: 24, lineHeight: 1, fontFamily: "'Fraunces', Georgia, serif" }}>+</span>
+                <span style={{ color: t.gold, fontWeight: 400, fontSize: 24, lineHeight: 1, fontFamily: "'Playfair Display', Georgia, serif" }}>+</span>
               </summary>
               <p style={{ margin: "12px 0 4px", fontSize: 15, lineHeight: 1.65, color: t.ink3 }}>{a}</p>
             </details>
@@ -556,7 +556,7 @@ function V1Page() {
           background: `radial-gradient(ellipse at 50% 100%, rgba(201,163,91,0.15) 0, transparent 60%)`,
         }} />
         <div className="v1-container" style={{ position: "relative" }}>
-          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: "clamp(30px, 4vw, 46px)", fontWeight: 400, margin: "0 0 14px", letterSpacing: "-0.02em", lineHeight: 1.05 }}>
+          <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(30px, 4vw, 46px)", fontWeight: 400, margin: "0 0 14px", letterSpacing: "-0.02em", lineHeight: 1.05 }}>
             Get back to <em style={{ color: t.gold, fontStyle: "italic" }}>enjoying</em> your pool.
           </h2>
           <p style={{ fontSize: 17, color: "rgba(255,255,255,0.78)", margin: "0 0 28px" }}>
