@@ -429,7 +429,18 @@ function V1Page() {
             overflow: "hidden", display: "grid", gridTemplateColumns: "1fr 1.3fr",
             marginBottom: 24,
           }} className="v1-feat-testi">
-            <PhotoPlaceholder label={"Before / After photo\nof Marcus R.'s pool\n(replace with real)"} ratio="4 / 3" tone="blue" />
+            <img
+              src="/assets/pool-water-sun.png"
+              alt=""
+              loading="lazy"
+              style={{
+                width: "100%",
+                height: "100%",
+                minHeight: 280,
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
             <div style={{ padding: "36px 38px" }}>
               <StarRow size={15} color={t.gold} />
               <blockquote style={{ margin: "14px 0 22px", fontFamily: "'Fraunces', Georgia, serif", fontSize: 22, lineHeight: 1.4, fontWeight: 400, letterSpacing: "-0.005em", color: t.ink }}>
