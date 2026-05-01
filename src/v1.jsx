@@ -138,7 +138,7 @@ function V1Page() {
             </span>
           </a>
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <PhoneLink kind="call" style={{
+            <PhoneLink kind="call" className="v1-header-call" style={{
               display: "inline-flex", alignItems: "center", gap: 8,
               fontWeight: 600, fontSize: 14.5, color: "#fff", textDecoration: "none",
               opacity: 0.92,
@@ -154,7 +154,7 @@ function V1Page() {
         </div>
       </header>
 
-      <section style={{ position: "relative", overflow: "hidden", color: "#fff", paddingTop: showUrgency ? 96 : 60, paddingBottom: 80, minHeight: 720 }}>
+      <section className="v1-hero-section" style={{ position: "relative", overflow: "hidden", color: "#fff", paddingTop: showUrgency ? 96 : 60, paddingBottom: 80, minHeight: 720 }}>
         <HeroPhoto />
 
         <div className="v1-container" style={{ position: "relative", zIndex: 2, paddingTop: 60 }}>
@@ -285,7 +285,7 @@ function V1Page() {
       </section>
 
       <section style={{ background: t.paper, borderBottom: `1px solid ${t.rule2}` }}>
-        <div className="v1-container" style={{ padding: "30px 0", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+        <div className="v1-container v1-trust-strip" style={{ padding: "30px 0", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
           {[
             { n: "300+", l: "Pools serviced" },
             { n: "5.0★", l: "Average rating" },
@@ -315,7 +315,7 @@ function V1Page() {
               <p style={{ fontSize: 16.5, lineHeight: 1.65, color: t.ink3, maxWidth: 520, margin: "0 0 32px" }}>
                 No hidden fees. No chemical upcharges. No nickel-and-diming. Here's exactly what your pool gets every time we show up.
               </p>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px 28px" }}>
+              <div className="v1-incl-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px 28px" }}>
                 {[
                   ["Skim &amp; net", "Surface debris, leaves, bugs"],
                   ["Brush walls &amp; tile", "Stops algae &amp; waterlines"],
@@ -473,7 +473,7 @@ function V1Page() {
             </div>
           </article>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="v1-testi-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="v1-testi-grid v1-testi-scroll">
             {[
               { name: "Marcus R.", loc: "Klein, TX", body: "Honestly the easiest thing I've outsourced. Will and his team show up like clockwork — pool's never been clearer, and chemicals stopped being something I think about." },
               { name: "David T.", loc: "The Woodlands, TX", body: "Switched from a national chain after years of inconsistency. Pricing is straightforward, the techs actually communicate, and they caught a pump leak before it became a $2k repair." },
@@ -577,8 +577,8 @@ function V1Page() {
         </div>
       </section>
 
-      <footer style={{ padding: "30px 0", background: "#06121F", color: "rgba(255,255,255,0.55)", fontSize: 13 }}>
-        <div className="v1-container" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
+      <footer style={{ padding: "30px 0 calc(30px + env(safe-area-inset-bottom))", background: "#06121F", color: "rgba(255,255,255,0.55)", fontSize: 13 }}>
+        <div className="v1-container v1-footer-row" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
           <div>© 2026 Escape Pool Services · Spring, TX · Licensed &amp; Insured</div>
           <div style={{ display: "flex", gap: 18 }}>
             <a href="/privacy.html" style={{ color: "inherit" }}>Privacy</a>

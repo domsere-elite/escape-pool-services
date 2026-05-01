@@ -230,10 +230,27 @@ export function LeadForm({ theme = "light", compact = false, ctaLabel = "Get my 
 export function StickyCTA({ accent = "#FF6A1A", scrollTarget = "#quote", style = "split" }) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 320);
+    const hero = document.querySelector(".v1-hero-section");
+    let io;
+    if (hero && typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver(([entry]) => setVisible(!entry.isIntersecting));
+      io.observe(hero);
+    }
+    // Scroll listener as a defensive fallback: once the hero's bottom edge
+    // crosses above the viewport, reveal the bar regardless of IO state.
+    const onScroll = () => {
+      if (hero) {
+        if (hero.getBoundingClientRect().bottom <= 0) setVisible(true);
+      } else {
+        setVisible(window.scrollY > 320);
+      }
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      if (io) io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   if (style === "call-only") {

@@ -30,6 +30,93 @@ summary { list-style: none; user-select: none; }
   .v1-feat-testi { grid-template-columns: 1fr !important; }
 }
 
+/* ============================================================
+   MOBILE — phone-optimized layout (≤600px viewport)
+   Per design handoff: separate phone composition, not a thoughtless reflow.
+   ============================================================ */
+@media (max-width: 600px) {
+  .v1-container { padding: 0 20px !important; }
+
+  /* Header — hide phone link in nav (sticky bar carries the call action) */
+  .v1 header { padding: 14px 0 !important; }
+  .v1 header [aria-label="Escape Pool Services"] svg { width: 30px !important; height: 30px !important; }
+  .v1 header [aria-label="Escape Pool Services"] span span:first-child { font-size: 22px !important; }
+  .v1 header .v1-header-call { display: none !important; }
+
+  /* Hero — reduce padding, scrim becomes top-down, headline shrinks */
+  .v1-hero-section { min-height: 0 !important; padding-top: 84px !important; padding-bottom: 48px !important; }
+  .v1-hero-section h1 { font-size: clamp(38px, 11vw, 58px) !important; line-height: 1.04 !important; margin-bottom: 18px !important; }
+  .v1-hero-section p { font-size: 16px !important; margin-bottom: 24px !important; }
+  .v1-hero-section .v1-hero-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+  /* Soften the side-gradient on mobile so the photo reads */
+  .v1-hero-section > [aria-hidden] > div:nth-child(2) {
+    background: linear-gradient(180deg, rgba(8,22,40,0.78) 0%, rgba(8,22,40,0.55) 40%, rgba(8,22,40,0.35) 100%) !important;
+  }
+
+  /* Form card — tighter padding, smaller H2 */
+  .v1 #v1-quote { padding: 22px !important; border-radius: 12px !important; }
+  .v1 #v1-quote h2 { font-size: 20px !important; }
+
+  /* Trust strip — 2x2 instead of 4-col, smaller numbers, no dividers */
+  .v1-trust-strip { grid-template-columns: 1fr 1fr !important; gap: 20px 12px !important; padding: 24px 0 !important; }
+  .v1-trust-strip > div { border-left: none !important; padding: 0 !important; }
+  .v1-trust-strip > div > div:first-child { font-size: 30px !important; }
+
+  /* What's included — single column with inline checks */
+  .v1-incl-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+
+  /* Section vertical padding collapses */
+  .v1 section[style*="96px 0"] { padding: 56px 0 !important; }
+  .v1 section[style*="88px 0"] { padding: 56px 0 !important; }
+  .v1 section[style*="80px 0"] { padding: 52px 0 !important; }
+  .v1 section[style*="76px 0"] { padding: 52px 0 !important; }
+  .v1 section[style*="72px 0"] { padding: 56px 0 !important; }
+
+  /* Pricing card */
+  .v1 aside[style*="radial-gradient"] { padding: 28px !important; }
+
+  /* Steps — tighter on mobile */
+  .v1-steps { gap: 14px !important; }
+  .v1-steps > div { padding: 22px !important; }
+
+  /* Testimonials — featured stacks, blockquote shrinks */
+  .v1-feat-testi { grid-template-columns: 1fr !important; }
+  .v1-feat-testi > div:last-child { padding: 26px !important; }
+  .v1-feat-testi blockquote { font-size: 18px !important; }
+
+  /* Secondary testimonials — horizontal snap-scroll on mobile */
+  .v1-testi-scroll {
+    grid-template-columns: none !important;
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: 86% !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding-left: 20px !important;
+    gap: 12px !important;
+    padding: 4px 20px 12px !important;
+    margin: 0 -20px !important;
+    scrollbar-width: none;
+  }
+  .v1-testi-scroll::-webkit-scrollbar { display: none; }
+  .v1-testi-scroll > article { scroll-snap-align: start; }
+
+  /* Offer band + Final CTA buttons — full-width on mobile */
+  .v1 section[style*="radial-gradient"] a[href="#v1-quote"],
+  .v1 section[style*="radial-gradient"] a[href^="tel:"] { width: 100%; justify-content: center; }
+
+  /* Footer — stack, leave room for sticky bar */
+  .v1-footer-row { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; padding-bottom: 80px; }
+
+  /* Form inputs — 16px font prevents iOS zoom-on-focus */
+  .v1 input { font-size: 16px !important; padding: 15px 14px !important; }
+  .v1 form button { font-size: 16px !important; padding: 16px !important; }
+
+  /* FAQ tightening */
+  .v1 details summary { font-size: 15.5px !important; }
+  .v1 details p { font-size: 14.5px !important; }
+}
+
 .sticky-cta-bar {
   position: fixed;
   left: 12px;
