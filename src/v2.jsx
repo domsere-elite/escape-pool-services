@@ -53,6 +53,20 @@ function SmsGlyph({ size = 15 }) {
   );
 }
 
+function Cross({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+  );
+}
+
+// Baked at prerender time, recomputed on hydration; suppressHydrationWarning
+// on the consuming span absorbs the (rare) season-boundary mismatch.
+const SEASON = ["winter", "winter", "spring", "spring", "spring", "summer",
+  "summer", "summer", "fall", "fall", "fall", "winter"][new Date().getMonth()];
+
 function Logo() {
   return (
     <a href="/" className="v2-logo" aria-label="Escape Pool Services">
@@ -105,6 +119,23 @@ function TicketForm() {
   useEffect(() => {
     if (zip.length === 5) track("zip_check", { in_area: SERVICED_ZIPS.has(zip), zip });
   }, [zip]);
+
+  // The ZIP fast-start at the bottom of the page hands its value off through
+  // sessionStorage + a window event so the visitor lands on a half-done form.
+  useEffect(() => {
+    const fill = () => {
+      try {
+        const z = sessionStorage.getItem("eps_zip_prefill");
+        if (z && /^\d{5}$/.test(z)) {
+          setZip(z);
+          setTimeout(() => document.getElementById("v2-name")?.focus({ preventScroll: true }), 350);
+        }
+      } catch (_) {}
+    };
+    fill();
+    window.addEventListener("eps:zip", fill);
+    return () => window.removeEventListener("eps:zip", fill);
+  }, []);
 
   const zipChip = zip.length === 5
     ? SERVICED_ZIPS.has(zip)
@@ -217,6 +248,11 @@ function TicketForm() {
           <button type="submit" className="v2-btn v2-btn--primary" disabled={sending}>
             {sending ? "Sending…" : "Text me my quote"}
           </button>
+          <ul className="v2-ticket-trust" aria-label="What to expect">
+            <li><Check size={12} /> Free — no obligation</li>
+            <li><Check size={12} /> No spam calls, ever</li>
+            <li><Check size={12} /> 300+ pools weekly</li>
+          </ul>
           <p className="v2-consent">
             By submitting you agree to receive a call/text about your quote. Reply STOP to opt out. No spam, ever.
           </p>
@@ -289,6 +325,127 @@ function Dock() {
   );
 }
 
+/* ---------- ZIP fast-start (final CTA) ---------- */
+
+function FinalZip() {
+  const [zip, setZip] = useState("");
+  const status = zip.length === 5 ? (SERVICED_ZIPS.has(zip) ? "ok" : "maybe") : null;
+
+  function go() {
+    if (zip.length === 5) {
+      try { sessionStorage.setItem("eps_zip_prefill", zip); } catch (_) {}
+      window.dispatchEvent(new Event("eps:zip"));
+      track("zipfast_continue", { zip, in_area: SERVICED_ZIPS.has(zip) });
+    } else {
+      track("cta_click", { placement: "final" });
+    }
+  }
+
+  return (
+    <div className="v2-zipfast">
+      <div className="v2-zipfast-row">
+        <input
+          id="v2-zipfast"
+          name="zip-fast"
+          aria-label="ZIP code"
+          autoComplete="postal-code"
+          inputMode="numeric"
+          maxLength={5}
+          placeholder="ZIP code"
+          value={zip}
+          onChange={(e) => setZip(e.target.value.replace(/\D/g, ""))}
+        />
+        <a href="#quote" className="v2-btn v2-btn--primary" onClick={go}>
+          {status ? "Finish my free quote →" : "Get my free quote"}
+        </a>
+      </div>
+      {status && (
+        <span className={`v2-zip-chip ${status === "ok" ? "v2-zip-chip--ok" : "v2-zip-chip--maybe"}`}>
+          {status === "ok"
+            ? `✓ ${zip} is on our routes — 15 seconds to finish.`
+            : `${zip} may be in range — send it through and we'll confirm.`}
+        </span>
+      )}
+    </div>
+  );
+}
+
+/* ---------- exit-intent rescue (desktop, once per session) ---------- */
+
+function ExitSave() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    try { if (sessionStorage.getItem("eps_exit_shown")) return; } catch (_) {}
+    let armed = false;
+    const armTimer = setTimeout(() => { armed = true; }, 10000);
+    const onOut = (e) => {
+      if (!armed || e.clientY > 8 || e.relatedTarget) return;
+      try {
+        if (sessionStorage.getItem("eps_lead_submitted")) return;
+        sessionStorage.setItem("eps_exit_shown", "1");
+      } catch (_) {}
+      setShow(true);
+      track("exit_intent_show");
+      document.removeEventListener("mouseout", onOut);
+    };
+    document.addEventListener("mouseout", onOut);
+    return () => {
+      clearTimeout(armTimer);
+      document.removeEventListener("mouseout", onOut);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!show) return;
+    const onKey = (e) => { if (e.key === "Escape") setShow(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [show]);
+
+  if (!show) return null;
+  return (
+    <div
+      className="v2-exit"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Before you go"
+      onClick={(e) => { if (e.target === e.currentTarget) setShow(false); }}
+    >
+      <div className="v2-exit-card">
+        <button
+          type="button"
+          className="v2-exit-x"
+          aria-label="Close"
+          onClick={() => { setShow(false); track("exit_intent_dismiss"); }}
+        >
+          ×
+        </button>
+        <div className="v2-kicker">Before you go</div>
+        <h3>Skip the form — just text us.</h3>
+        <p>
+          A real person replies with your flat-rate quote within the hour.
+          One text with a number — no spam, no follow-up sequence.
+        </p>
+        <div className="v2-exit-ctas">
+          <Phone kind="sms" placement="exit" className="v2-btn v2-btn--primary">
+            <SmsGlyph /> Text {PHONE_DISPLAY}
+          </Phone>
+          <a
+            href="#quote"
+            className="v2-btn v2-btn--ghost"
+            onClick={() => { setShow(false); track("cta_click", { placement: "exit" }); }}
+          >
+            Finish the 30-second form
+          </a>
+        </div>
+        <small className="v2-exit-note">$199/mo flat · free $125 filter clean for new customers</small>
+      </div>
+    </div>
+  );
+}
+
 /* ---------- scroll-depth instrumentation ---------- */
 
 function useScrollDepth() {
@@ -331,11 +488,24 @@ const RECEIPT_ITEMS = [
   ["Photo report, texted", "after every visit"],
 ];
 
+const COMPARE_ROWS = [
+  ["The bill", "$199/mo flat — chemicals, fees, everything", "Base rate, then chemicals billed separately"],
+  ["Who shows up", "The same technician, every week", "Whoever's on the route that day"],
+  ["Proof it happened", "Photo + water chemistry texted after every visit", "You walk out back and guess"],
+  ["The commitment", "Month-to-month — cancel with a text", "Annual agreements, cancellation fees"],
+  ["When something breaks", "Photo and a flat quote first — you approve", "Surprise line items on next month's bill"],
+  ["Getting a quote", "Texted within the hour", "Phone tag, then a site-visit"],
+];
+
 const FAQS = [
   ["What's actually included for $199?", "Skim, brush, vacuum, balance, all standard chemicals (chlorine, stabilizer, balancers), an equipment check, and a photo service report texted after every visit. Same flat rate every month — chemicals never show up as a surprise line item."],
   ["Are there contracts or cancellation fees?", "No. Month-to-month, cancel any time, no fees. Most customers stay because they want to."],
   ["How fast can you start?", "Most new pools are on a weekly schedule within the same week. After your quote we set a service day and start."],
   ["What if my pool is green or in rough shape?", "We quote a one-time recovery (\"green to clear\") first, then weekly service kicks in at the standard rate. The before/after above was exactly that."],
+  ["Do I need to be home for service?", "No — most customers aren't. As long as we can reach the pool (gate code or unlocked side gate), we handle the visit and text you the photo report when we're done."],
+  ["What about dogs and gates?", "Mention your dog when you reach out and we'll plan around them. Gates get latched behind us on every visit — it's on the checklist and noted in your report."],
+  ["Do you service saltwater pools?", "Yes — salt and traditional chlorine systems are both on our routes, with the same weekly testing and balancing either way."],
+  ["If you find a problem, is that an upsell?", "No surprise work, ever. If we spot something — a pump leak, a failing seal — you get a photo and a flat quote by text first. Nothing happens until you say go."],
 ];
 
 function V2Page() {
@@ -345,7 +515,7 @@ function V2Page() {
   return (
     <div className="v2">
       <div className="v2-topbar">
-        Booking spring routes — <strong>limited capacity</strong><span className="v2-topbar-zips"> in 77386, 77381 &amp; 77382</span> · <Phone kind="call" placement="topbar">Reserve a slot</Phone>
+        Booking <span suppressHydrationWarning>{SEASON}</span> routes — <strong>limited capacity</strong><span className="v2-topbar-zips"> in 77386, 77381 &amp; 77382</span> · <Phone kind="call" placement="topbar">Reserve a slot</Phone>
       </div>
 
       <header className="v2-header">
@@ -548,6 +718,49 @@ function V2Page() {
         </div>
       </section>
 
+      <section className="v2-section v2-compare-wrap">
+        <div className="v2-container">
+          <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 44px" }}>
+            <div className="v2-kicker">Why homeowners switch</div>
+            <h2 className="v2-h2">Compare us to <em>whoever you've got.</em></h2>
+          </div>
+          <div className="v2-compare">
+            <div className="v2-compare-head v2-compare-corner" aria-hidden="true" />
+            <div className="v2-compare-head v2-compare-head--us">Escape</div>
+            <div className="v2-compare-head">The typical service</div>
+            {COMPARE_ROWS.map(([label, us, them]) => (
+              <React.Fragment key={label}>
+                <div className="v2-compare-label">{label}</div>
+                <div className="v2-compare-us"><Check /> <span>{us}</span></div>
+                <div className="v2-compare-them"><Cross /> <span>{them}</span></div>
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="v2-section v2-founder">
+        <div className="v2-container">
+          <div className="v2-founder-card">
+            <div className="v2-kicker">From the owner</div>
+            <p className="v2-founder-note">
+              "I started Escape in 2020 with one truck and a simple rule: do the whole job, every
+              week, and never surprise anyone on a bill. Six years and 300-plus weekly pools later,
+              that's still the entire business model. When you reach out, you're texting my team —
+              not a call center."
+            </p>
+            <div className="v2-founder-sig">
+              <span className="v2-founder-name">Will</span>
+              <span>Owner, Escape Pool Services · Spring, TX</span>
+            </div>
+            <div className="v2-founder-ctas">
+              <Phone kind="sms" placement="founder" className="v2-btn v2-btn--primary"><SmsGlyph /> Text Will's team</Phone>
+              <Phone kind="call" placement="founder" className="v2-btn v2-btn--ghost"><CallGlyph /> {PHONE_DISPLAY}</Phone>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="v2-section v2-offer">
         <div className="v2-container">
           <div className="v2-offer-badge">New customer welcome</div>
@@ -584,7 +797,7 @@ function V2Page() {
           <h2 className="v2-h2">Get back to <em>enjoying</em> your pool.</h2>
           <p>Free quote in under an hour. Same-week start. $125 filter clean included.</p>
           <div className="v2-final-ctas">
-            <QuoteLink placement="final" className="v2-btn v2-btn--primary">Get my free quote</QuoteLink>
+            <FinalZip />
             <Phone kind="call" placement="final" className="v2-btn v2-btn--ghost"><CallGlyph /> {PHONE_DISPLAY}</Phone>
           </div>
         </div>
@@ -607,6 +820,7 @@ function V2Page() {
       </footer>
 
       <Dock />
+      <ExitSave />
     </div>
   );
 }
