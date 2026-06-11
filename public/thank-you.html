@@ -9,18 +9,70 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..700;1,400..700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/legal.css">
 
-  <!-- Google tag (gtag.js) — Google Ads. The page-load itself IS the conversion:
-       the "Submit lead form (1)" action uses URL-contains-"thank-you" detection,
-       so loading this page fires the form-submit conversion automatically. -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18124405751"></script>
+  <!-- Tracking config — keep the IDs in sync with index.html. -->
+  <script>
+    window.__EPS = {
+      AW_ID: "AW-18124405751",
+      AW_LEAD_LABEL: "",
+      AW_CALL_LABEL: "",
+      GA4_ID: ""
+    };
+  </script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'AW-18124405751');
+    (function () {
+      var c = window.__EPS || {};
+      if (c.AW_ID) gtag('config', c.AW_ID, { allow_enhanced_conversions: true });
+      if (c.GA4_ID) gtag('config', c.GA4_ID);
+      var id = c.AW_ID || c.GA4_ID;
+      if (id) {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+        document.head.appendChild(s);
+      }
+    })();
+  </script>
+  <!-- Lead conversion: fires exactly once per real form submit (gated by a
+       sessionStorage flag set by the landing-page form), with enhanced-
+       conversion user data attached for better Ads matching. Direct loads,
+       refreshes, and bookmarks do NOT fire conversions. -->
+  <script>
+    (function () {
+      var c = window.__EPS || {};
+      var lead = null;
+      try { lead = JSON.parse(sessionStorage.getItem('eps_lead')); } catch (e) {}
+      if (lead && lead.phoneE164) {
+        var parts = (lead.name || '').trim().split(/\s+/);
+        gtag('set', 'user_data', {
+          phone_number: lead.phoneE164,
+          address: {
+            first_name: parts[0] || '',
+            last_name: parts.slice(1).join(' ') || '',
+            postal_code: lead.zip || '',
+            country: 'US'
+          }
+        });
+      }
+      var submitted = false;
+      try { submitted = sessionStorage.getItem('eps_lead_submitted') === '1'; } catch (e) {}
+      if (submitted) {
+        gtag('event', 'generate_lead', { currency: 'USD', value: 199 });
+        if (c.AW_ID && c.AW_LEAD_LABEL) {
+          gtag('event', 'conversion', {
+            send_to: c.AW_ID + '/' + c.AW_LEAD_LABEL,
+            value: 199,
+            currency: 'USD'
+          });
+        }
+        try { sessionStorage.removeItem('eps_lead_submitted'); } catch (e) {}
+      }
+    })();
   </script>
 
   <style>
@@ -98,7 +150,7 @@
       text-align: left;
     }
     .ty-next h3 {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Schibsted Grotesk', sans-serif;
       font-size: 11px;
       letter-spacing: 0.16em;
       text-transform: uppercase;

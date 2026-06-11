@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weekly Pool Cleaning in Spring, TX — From $199/mo | Escape Pool Services</title>
-  <meta name="description" content="Family-owned weekly pool cleaning in Spring, Conroe, Klein & The Woodlands since 2020. From $199/mo, plus a free filter cleaning for new customers ($125 value). Licensed, insured, no contracts.">
+  <title>Weekly Pool Cleaning in Spring, TX — $199/mo Flat | Escape Pool Services</title>
+  <meta name="description" content="Family-owned weekly pool cleaning in Spring, Conroe, Klein & The Woodlands since 2020. $199/mo flat — chemicals included, plus a free filter cleaning for new customers ($125 value). Licensed, insured, no contracts.">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#0A1B2E">
+  <meta name="theme-color" content="#0A5A66">
   <link rel="canonical" href="https://escapepoolservices.com/">
 
   <meta property="og:title" content="Weekly Pool Cleaning · Spring, TX | Escape Pool Services">
-  <meta property="og:description" content="Family-owned since 2020 · 300+ pools serviced · From $199/mo · Free filter clean for new customers ($125 value).">
+  <meta property="og:description" content="Family-owned since 2020 · 300+ pools weekly · $199/mo flat · Free filter clean for new customers ($125 value).">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://escapepoolservices.com/">
   <meta property="og:image" content="https://escapepoolservices.com/assets/hero-pool-aerial.jpg">
@@ -18,11 +18,9 @@
 
   <link rel="icon" type="image/svg+xml" href="/assets/logo-mark-dark.svg">
 
-  <link rel="preload" as="image" href="/assets/hero-pool-aerial.jpg" type="image/jpeg" fetchpriority="high">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
   <script type="application/ld+json">
   {
@@ -48,7 +46,7 @@
   <script type="application/ld+json">
   {
     "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-      {"@type":"Question","name":"What's actually included for $199?","acceptedAnswer":{"@type":"Answer","text":"Skim, brush, vacuum, balance, all standard chemicals (chlorine, stabilizer, balancers), equipment check, and a photo service report. Same flat rate every month."}},
+      {"@type":"Question","name":"What's actually included for $199?","acceptedAnswer":{"@type":"Answer","text":"Skim, brush, vacuum, balance, all standard chemicals (chlorine, stabilizer, balancers), an equipment check, and a photo service report texted after every visit. Same flat rate every month."}},
       {"@type":"Question","name":"Are there contracts or cancellation fees?","acceptedAnswer":{"@type":"Answer","text":"No. Month-to-month, cancel any time, no fees. Most customers stay because they want to."}},
       {"@type":"Question","name":"How fast can you start?","acceptedAnswer":{"@type":"Answer","text":"Most new pools are on a weekly schedule within the same week. After your quote we set a service day and start."}},
       {"@type":"Question","name":"What if my pool is green or in rough shape?","acceptedAnswer":{"@type":"Answer","text":"We quote a one-time recovery (\"green to clear\") first, then weekly service kicks in at the standard rate."}}
@@ -56,26 +54,66 @@
   }
   </script>
 
-  <!-- Google tag (gtag.js) — Google Ads -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18124405751"></script>
+  <!-- ============================================================
+       Tracking configuration — single source of truth.
+       Paste IDs here as they're created in Google Ads / GA4:
+         AW_ID          Google Ads tag (Tools > Data manager > Google tag)
+         AW_LEAD_LABEL  conversion label for "Lead form submit"
+         AW_CALL_LABEL  conversion label for "Click to call"
+         GA4_ID         GA4 Measurement ID (optional but recommended)
+       Labels come from each conversion action's "Tag setup > Use Google
+       tag manager" screen — the part after the slash in send_to.
+       ============================================================ -->
+  <script>
+    window.__EPS = {
+      AW_ID: "AW-18124405751",
+      AW_LEAD_LABEL: "",
+      AW_CALL_LABEL: "",
+      GA4_ID: ""
+    };
+  </script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'AW-18124405751');
+    (function () {
+      var c = window.__EPS || {};
+      if (c.AW_ID) gtag('config', c.AW_ID, { allow_enhanced_conversions: true });
+      if (c.GA4_ID) gtag('config', c.GA4_ID);
+      var id = c.AW_ID || c.GA4_ID;
+      if (id) {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+        document.head.appendChild(s);
+      }
+    })();
   </script>
 </head>
 <body>
   <!-- Netlify Forms detection shim. Netlify parses static HTML at build time
        to register form names; the real form is rendered by React in /src.
        Submissions land at the same name ("weekly-quote") via a POST in
-       LeadForm.handleSubmit. Hidden from users via inert + the hidden attr. -->
+       TicketForm.handleSubmit. Hidden from users via inert + the hidden attr. -->
   <form name="weekly-quote" data-netlify="true" netlify-honeypot="bot-field" hidden inert>
     <input type="hidden" name="form-name" value="weekly-quote" />
     <input name="bot-field" />
     <input type="text" name="name" />
     <input type="tel" name="phone" />
     <input type="text" name="zip" />
+    <!-- Attribution fields (populated by the JS form): which ad click,
+         which headline angle, and which page variant produced this lead. -->
+    <input type="hidden" name="variant" />
+    <input type="hidden" name="gclid" />
+    <input type="hidden" name="utm_source" />
+    <input type="hidden" name="utm_medium" />
+    <input type="hidden" name="utm_campaign" />
+    <input type="hidden" name="utm_term" />
+    <input type="hidden" name="utm_content" />
+    <input type="hidden" name="angle" />
+    <input type="hidden" name="referrer" />
+    <input type="hidden" name="landing" />
+    <input type="hidden" name="device" />
   </form>
 
   <div id="root"></div>

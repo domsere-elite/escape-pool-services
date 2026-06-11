@@ -3,6 +3,8 @@
 Thumbs.db
 node_modules/
 dist/
+dist-server/
+.playwright-mcp/
 *.log
 
 # WSL/Windows alternate-data-stream artifacts
