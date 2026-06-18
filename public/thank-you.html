@@ -15,7 +15,7 @@
     window.__EPS = {
       AW_ID: "AW-18124405751",
       AW_LEAD_LABEL: "",
-      AW_CALL_LABEL: "",
+      AW_CALL_LABEL: "BhwACO6xzsEcEPf3scJD",
       GA4_ID: ""
     };
   </script>
@@ -25,6 +25,25 @@
     gtag('js', new Date());
     (function () {
       var c = window.__EPS || {};
+      // Enhanced conversions: set the hashed first-party user data BEFORE the
+      // Google Ads tag configures/fires. The lead conversion counts on page
+      // load, so user_data must be set before gtag('config') runs, otherwise
+      // the enhanced-conversion match data is dropped (shows "not recording").
+      try {
+        var lead = JSON.parse(sessionStorage.getItem('eps_lead'));
+        if (lead && lead.phoneE164) {
+          var parts = (lead.name || '').trim().split(/\s+/);
+          gtag('set', 'user_data', {
+            phone_number: lead.phoneE164,
+            address: {
+              first_name: parts[0] || '',
+              last_name: parts.slice(1).join(' ') || '',
+              postal_code: lead.zip || '',
+              country: 'US'
+            }
+          });
+        }
+      } catch (e) {}
       if (c.AW_ID) gtag('config', c.AW_ID, { allow_enhanced_conversions: true });
       if (c.GA4_ID) gtag('config', c.GA4_ID);
       var id = c.AW_ID || c.GA4_ID;
@@ -43,20 +62,8 @@
   <script>
     (function () {
       var c = window.__EPS || {};
-      var lead = null;
-      try { lead = JSON.parse(sessionStorage.getItem('eps_lead')); } catch (e) {}
-      if (lead && lead.phoneE164) {
-        var parts = (lead.name || '').trim().split(/\s+/);
-        gtag('set', 'user_data', {
-          phone_number: lead.phoneE164,
-          address: {
-            first_name: parts[0] || '',
-            last_name: parts.slice(1).join(' ') || '',
-            postal_code: lead.zip || '',
-            country: 'US'
-          }
-        });
-      }
+      // user_data for enhanced conversions is set in the Google tag script
+      // above (before gtag('config')) so it attaches to the lead conversion.
       var submitted = false;
       try { submitted = sessionStorage.getItem('eps_lead_submitted') === '1'; } catch (e) {}
       if (submitted) {
