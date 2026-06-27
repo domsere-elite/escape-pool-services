@@ -508,7 +508,7 @@ const FAQS = [
   ["If you find a problem, is that an upsell?", "No surprise work, ever. If we spot something — a pump leak, a failing seal — you get a photo and a flat quote by text first. Nothing happens until you say go."],
 ];
 
-function V2Page() {
+function V2Page({ skag } = {}) {
   const angle = useMemo(() => getAttribution().angle, []);
   useScrollDepth();
 
@@ -538,8 +538,8 @@ function V2Page() {
         <div className="v2-container">
           <div className="v2-hero-grid">
             <div>
-              <div className="v2-eyebrow v2-rise v2-rise-1">Now booking · Spring, TX</div>
-              <h1 className="v2-h1 v2-rise v2-rise-2">{HEADLINES[angle] || HEADLINES[DEFAULT_ANGLE]}</h1>
+              <div className="v2-eyebrow v2-rise v2-rise-1">{skag ? skag.eyebrow : "Now booking · Spring, TX"}</div>
+              <h1 className="v2-h1 v2-rise v2-rise-2">{skag ? <>{skag.h1Lead} <em>{skag.h1Em}</em></> : (HEADLINES[angle] || HEADLINES[DEFAULT_ANGLE])}</h1>
               <p className="v2-hero-sub v2-rise v2-rise-3">
                 Skim, brush, vacuum, balance, inspect — <strong>same technician, every week</strong>, chemicals included.
                 New customers get a free filter cleaning ($125 value). No contracts.
