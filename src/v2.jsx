@@ -168,6 +168,9 @@ function TicketForm() {
         name,
         phone,
         zip,
+        // Route-serviceability verdict travels with the lead so the Netlify
+        // notification flags out-of-area ZIPs instead of relying on recall.
+        in_area: SERVICED_ZIPS.has(zip) ? "yes" : "OUT OF AREA",
         variant: "v2",
         ...attr,
       });

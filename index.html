@@ -117,6 +117,9 @@
     <input type="text" name="name" />
     <input type="tel" name="phone" />
     <input type="text" name="zip" />
+    <!-- Serviceability verdict for the submitted ZIP, so the notification says
+         whether it is on a route instead of leaving that to memory. -->
+    <input type="hidden" name="in_area" />
     <!-- Attribution fields (populated by the JS form): which ad click,
          which headline angle, and which page variant produced this lead. -->
     <input type="hidden" name="variant" />
