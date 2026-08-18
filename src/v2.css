@@ -27,6 +27,8 @@
   font-family: var(--sans);
   background: var(--paper);
   color: var(--ink);
+  /* Fraunces: keep the wonky alternate glyphs off everywhere (inherited) */
+  font-variation-settings: "WONK" 0;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -214,7 +216,7 @@
   letter-spacing: -0.022em;
   margin: 0 0 20px;
   text-wrap: balance;
-  font-variation-settings: "opsz" 110;
+  font-variation-settings: "opsz" 42, "WONK" 0;
 }
 .v2-h1 em {
   font-style: italic;
